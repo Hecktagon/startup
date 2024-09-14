@@ -1,2 +1,2 @@
 this is a conflict test
-here is an eit from GitHub
+here is an edit from GitHub
