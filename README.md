@@ -10,6 +10,8 @@ The app will open on a login screen, after which the user will be sent to a home
 The main feature of the app will be the Vocab section, in which users can create, upload, and import folders and flashcard sets:
 <img width="384" alt="Vocab_1" src="https://github.com/user-attachments/assets/3dfe5cb0-4b97-439d-a355-29fbcc357de2">
 
+Within the Vocabuly section, users can access flashcard sets organised into folders. individual sets will have notifications on them reminding the reader when it is timem to review a set for maximum retention:
+<img width="355" alt="Vocab_2" src="https://github.com/user-attachments/assets/0dbbaba8-af7a-4262-b8ba-db466892936b">
 
 
 ## Technologies:  
