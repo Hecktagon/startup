@@ -16,6 +16,10 @@ Within the Vocabuly section, users can access flashcard sets organised into fold
 <br>
 <img width="355" alt="Vocab_2" src="https://github.com/user-attachments/assets/0dbbaba8-af7a-4262-b8ba-db466892936b">
 
+Also included in the app will be a live chat, which can match users up with other users who speak the language they are trying to learn:
+<br>
+<img width="355" alt="Chat" src="https://github.com/user-attachments/assets/320e85ab-5460-4898-9729-6966b78be3da">
+
 
 ## Technologies:  
 ### HTML:  
