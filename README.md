@@ -19,6 +19,13 @@ Within the Vocabuly section, users can access flashcard sets organised into fold
 Also included in the app will be a live chat, which can match users up with other users who speak the language they are trying to learn:
 <br>
 <img width="355" alt="Chat" src="https://github.com/user-attachments/assets/320e85ab-5460-4898-9729-6966b78be3da">
+<br>
+### Potential other additions to the application may include:  
+A simplified, duolingo-like grammar course section.  
+A voice-chat option for practicing listening and speaking.  
+AI translation suggestions for the flashcard creation process.  
+Grammar hints attached to phrases within vocab flashcards.
+<br>
 
 
 ## Technologies:  
