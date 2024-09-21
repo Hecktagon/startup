@@ -1,4 +1,4 @@
-# **WEEK ONE**
+# **GIT & GITHUB**
 
 ## *Markdown syntax*
 Headings :  
@@ -36,4 +36,5 @@ from the console you can interract with GitHub using the following:
 `Git pull` attempts to apply all changes to the GitHub to your local copy  
 `Git push` attempts to apply all changes to your local copy to the GitHub  
 
+# **HTML**
 
