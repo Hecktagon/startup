@@ -119,7 +119,7 @@ blockquote: Defines a section that is quoted from another source.
 
 `meter`: Visualizes a value within a known range, such as a progress bar or rating. Example: `<meter min="0" max="100" value="50"></meter>`  
   
-### Types for Input:
+### Types for Input:  
 These change the way that the user input interactable appears, and what kind of input it expects. For example:  
 ```
 <form action="form.html" method="post">
