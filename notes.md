@@ -99,15 +99,15 @@ blockquote: Defines a section that is quoted from another source.
 `😀`	`&#128512;`  
 
 ## *User Input Elements*
-`form`	Input container and submission	`<form action="form.html" method="post">`  
-`fieldset`	Labeled input grouping	`<fieldset> ... </fieldset>`  
-`input`	Multiple types of user input	`<input type="" />`  
-`select`	Selection dropdown	`<select><option>1</option></select>`  
-`optgroup`	Grouped selection dropdown	`<optgroup><option>1</option></optgroup>`  
-`option`	Selection option	`<option selected>option2</option>`  
-`textarea`	Multiline text input	`<textarea></textarea>`  
-`label`	Individual input label	`<label for="range">Range: </label>`  
-`output`	Output of input	`<output for="range">0</output>`  
-`meter`	Display value with a known range	`<meter min="0" max="100" value="50"></meter>`  
+form: A container for user input elements that allows you to collect and submit data to a server, like this: <form action="form.html" method="post"></form>.
+fieldset: Groups related input elements together within a form, often with a label to describe the group, for example: <fieldset> ... </fieldset>.
+input: A versatile element for various types of user input, such as text, passwords, checkboxes, and more. Example: <input type="" />.
+select: Creates a dropdown menu for users to choose from a list of options, like this: <select><option>1</option></select>.
+optgroup: Groups related options within a dropdown menu, making it easier to navigate. Example: <optgroup><option>1</option></optgroup>.
+option: Represents an individual item within a dropdown menu or list, for instance: <option selected>option2</option>.
+textarea: Provides a multi-line text input field for users to enter larger amounts of text, such as: <textarea></textarea>.
+label: Associates a text label with a specific input element, improving accessibility and usability. Example: <label for="range">Range: </label>.
+output: Displays the result of a calculation or user action, often used with forms, like this: <output for="range">0</output>.
+meter: Visualizes a value within a known range, such as a progress bar or rating. Example: <meter min="0" max="100" value="50"></meter>
 
 
