@@ -38,7 +38,7 @@ from the console you can interract with GitHub using the following:
 
 # **HTML**
 
-## *Common HTML Entities:*  
+## *Common HTML Elements:*  
 `html`: The root element of an HTML document. All other elements must be inside this.  
 `head`: Contains meta-information about the document, like its title and links to scripts and stylesheets.  
 `title`: Sets the title of the webpage, shown in the browser’s title bar or tab.  
@@ -97,5 +97,17 @@ blockquote: Defines a section that is quoted from another source.
 `"`	`&quot;`  
 `'`	`&apos;`  
 `😀`	`&#128512;`  
+
+## *User Input Elements*
+`form`	Input container and submission	`<form action="form.html" method="post">`  
+`fieldset`	Labeled input grouping	`<fieldset> ... </fieldset>`  
+`input`	Multiple types of user input	`<input type="" />`  
+`select`	Selection dropdown	`<select><option>1</option></select>`  
+`optgroup`	Grouped selection dropdown	`<optgroup><option>1</option></optgroup>`  
+`option`	Selection option	`<option selected>option2</option>`  
+`textarea`	Multiline text input	`<textarea></textarea>`  
+`label`	Individual input label	`<label for="range">Range: </label>`  
+`output`	Output of input	`<output for="range">0</output>`  
+`meter`	Display value with a known range	`<meter min="0" max="100" value="50"></meter>`  
 
 
