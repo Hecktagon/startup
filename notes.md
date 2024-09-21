@@ -38,6 +38,7 @@ from the console you can interract with GitHub using the following:
 
 # **HTML**
 
+## *Common HTML Entities:*  
 `html`: The root element of an HTML document. All other elements must be inside this.  
 `head`: Contains meta-information about the document, like its title and links to scripts and stylesheets.  
 `title`: Sets the title of the webpage, shown in the browser’s title bar or tab.  
@@ -87,6 +88,14 @@ blockquote: Defines a section that is quoted from another source.
 `code`: Defines a piece of computer code.  
 `cite`: Defines the title of a work.  
 `abbr`: Defines an abbreviation or acronym, with an optional title attribute to provide the full term.  
-`<!-- (text here) -->`: Makes a comment.    
+`<!-- (text here) -->`: Makes a comment.
+
+## *Special Character Codes:*  
+`&`	`&amp;`  
+`<`	`&lt;`  
+`>`	`&gt;`  
+`"`	`&quot;`  
+`'`	`&apos;`  
+`😀`	`&#128512;`  
 
 
