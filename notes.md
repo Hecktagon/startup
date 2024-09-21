@@ -119,5 +119,30 @@ blockquote: Defines a section that is quoted from another source.
 
 `meter`: Visualizes a value within a known range, such as a progress bar or rating. Example: `<meter min="0" max="100" value="50"></meter>`  
   
+### Types for Input:
+These change the way that the user input interactable appears, and what kind of input it expects. For example:  
+```
+<form action="form.html" method="post">
+    <label for="phone">Phone Number:<label>
+    <input type="tel" id="phone">
+</form>
+```  
+will display a textbox that expects the users phone number.  
 
+`text`	Single line textual value  
+`password`	Obscured password  
+`email`	Email address  
+`tel`	Telephone number  
+`url`	`URL` address  
+`number`	Numerical value  
+`checkbox`	Inclusive selection  
+`radio`	Exclusive selection  
+`range`	Range limited number  
+`date`	Year, month, day  
+`datetime-local`	Date and time  
+`month`	Year, month  
+`week`	Week of year  
+`color`	Color  
+`file`	Local file  
+`submit`	button to trigger form submission  
 
