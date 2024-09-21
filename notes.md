@@ -146,3 +146,10 @@ will display a textbox that expects the users phone number.
 `file`	Local file  
 `submit`	button to trigger form submission  
 
+
+Each of these input types have the following additional attributes:  
+
+`name`	The name of the input. This is submitted as the name of the input if used in a form  
+`disabled`	Disables the ability for the user to interact with the input  
+`value`	The initial value of the input  
+`required`	Signifies that a value is required in order to be valid  
