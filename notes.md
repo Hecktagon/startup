@@ -154,3 +154,50 @@ Each of these input types have the following additional attributes:
 `disabled`	Disables the ability for the user to interact with the input  
 `value`	The initial value of the input  
 `required`	Signifies that a value is required in order to be valid  
+
+# **CSS**
+
+## *Selectors*
+*selectors are how we specify which part of our HTML we want to stylize*  
+the simplest form of selector looks like this:  
+```
+tagtype {
+    apply special effects to all items with specified tagtype
+}
+```
+
+### *Combinators*
+more specific ways to specify tags:  
+Descendant:	A list of descendants	`body section`	Any section that is a descendant of a body  
+Child:	A list of direct children	`section > p`	Any p that is a direct child of a section  
+General sibling:	A list of siblings	`div ~ p`	Any p that has a div sibling  
+Adjacent sibling:	A list of adjacent sibling	`div + p`	Any p that has an adjacent div sibling  
+
+### *Class Selectors*
+If we want to stylize HTML by class we do this :
+```
+(optionally specify tag type).class {
+    insert stylization
+}
+```
+
+### *Id Selectors*
+If we want to stylize HTML by id we do this :
+```
+#id {
+    insert stylization
+}
+```
+
+### *Attribute Selectors*
+If we want to stylize HTML based on attributes we do this :
+```
+tagtype[desired attribute EX: href*="https://"] {
+    insert stylization
+}
+```
+
+## *Declarations* 
+
+
+
