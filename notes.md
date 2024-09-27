@@ -228,3 +228,31 @@ tagtype[desired attribute EX: href*="https://"] {
 `width: unit=25vmin` Sets the width of the box  
 `z-index: number=100` Controls the positioning of the element on the z axis  
 
+
+## *Fonts:*  
+
+There are four major families of fonts: Serif, sans-serif, fixed, and symbol. A serif is a small stroke attached to the ends of a character's major strokes. Serif fonts have the extra strokes; sans-serif fonts do not. Fixed fonts characters all are the same size. This is useful for lining up text when doing things like coding or displaying tabular data. Symbol fonts represent non-language characters such as arrows or emojis.
+
+### *Importing Fonts:*
+
+`@font-face` allows you to load a font included in your app, so that any user, regardless of whther they have the font downloaded, sees that font:  
+```
+@font-face {
+  font-family: 'Quicksand';
+  src: url('https://cs260.click/fonts/quicksand.ttf');
+}
+
+p {
+  font-family: Quicksand;
+}
+```
+
+`@import` allows you to instead pull a font from another source:
+```
+@import url('https://fonts.googleapis.com/css2?family=Rubik Microbe&display=swap');
+
+p {
+  font-family: 'Rubik Microbe';
+}
+```
+
