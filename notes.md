@@ -172,6 +172,7 @@ Descendant:	A list of descendants	`body section`	Any section that is a descendan
 Child:	A list of direct children	`section > p`	Any p that is a direct child of a section  
 General sibling:	A list of siblings	`div ~ p`	Any p that has a div sibling  
 Adjacent sibling:	A list of adjacent sibling	`div + p`	Any p that has an adjacent div sibling  
+Multiple tags: `p, h1` all p and h1 tags  
 
 ### *Class Selectors*
 If we want to stylize HTML by class we do this :
