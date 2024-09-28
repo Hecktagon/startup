@@ -199,7 +199,7 @@ tagtype[desired attribute EX: href*="https://"] {
 
 ## *Declarations*  
 
-`background-color: color=red Fill` the background color  
+`background-color: color=red` Fill the background color  
 `border: color=#fad width=solid style=medium` Sets the border using shorthand where any or all of the values may be provided  
 `border-radius: unit=50%` The size of the border radius  
 `box-shadow: x-offset=2px y-offset=2px blur-radius=2px color=gray` Creates a shadow  
