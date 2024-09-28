@@ -256,3 +256,32 @@ p {
 }
 ```
 
+
+### *Animation:*  
+
+Animation is CSS works by providing different keyframes with different phases in that animation, which CSS will smothly transition between.  
+
+`animation-name: name_of_animation)`  
+`animation_duration: 3s` specifies how long the animation will last  
+`@keyframes name_of_animation` contains the `from ` and `to` keywords, allowing a start and end keyframe fo rthe animation. additional keytframes can be inserted using the percent of the way through the animation we want the keyframe to appear, for example 50% will insert a keyframe 50% of the way through the animation.  
+
+In this example, we make an animation where some text grows from nothing to 20% of the view height (vh), but towars the end of the animation grows a little too big and then shrinks back down:  
+
+```
+p {
+  text-align: center;
+  font-size: 20vh;
+
+  animation-name: demo;
+  animation-duration: 3s;
+}
+@keyframes demo {
+  from {
+    font-size: 0vh;
+  }
+
+  to {
+    font-size: 20vh;
+  }
+}
+```  
