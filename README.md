@@ -48,3 +48,31 @@ Users will log in and their information will be stored to allow each user to cre
 
 ### WebSocket Data:  
 Users will be able to live chat with oither users in order to exchange languages and practice using their newfound vocabulary and grammar with natives and other learners.
+
+
+# **Step 1 HTML:**
+
+The initial implementation of the HTML has a few differences from the original plan. Upon seeing how complex it will be to design this website, I decided to focus on the flashcards portion of the website, and will add other features, like a chat and vocab lessons if time permits.  
+
+My site now contains a login page, a home page with paths to a settings and main vocab page, a vocab sets page, a flashcard set maker page, and a flashcard page.   
+
+### Login:  
+The login page is pretty stereotypical, and similar to the Simon login page, accepting an email, a username, and a password to be used later.  
+
+### Home:  
+The home page is pretty straightfoward, with some nav links, and some buttons that take you to vocab and settings.  
+
+### Settings:  
+The settings page allows the user to select a color scheme and set some preferences for their flashcards using various input elements. the functionality will be implemented later.  
+
+### Vocab:  
+This page contains folders of flashcard sets broken up usually by language, to be implemented is an add folder button that will allow the user to create and store their own language data/sets.  
+
+### Flashcard sets:  
+Upon clicking on a vocab folder, you are taken to a library of sets of flashcards for the user to study, and given an option to make more sets.  
+
+### Set maker:  
+When the user clicks "make a set" they are directed to the set maker page, where they can insert either a CSV format text to be broken up into flashcards, or a manual interface with calls to a translation service to help the user make new sets.   
+
+### Flashcards:  
+When the user clicks on one of ther flashcard sets, they are presented with a simplistic flashcard display, which will cycle through flashcards in the set, play audio from a call to an AI voice service, and keep track fo which flashcards the user knows, and which they dont know. 
