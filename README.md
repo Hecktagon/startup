@@ -52,7 +52,7 @@ Users will be able to live chat with oither users in order to exchange languages
 
 # **Step 1 HTML:**
 
-The initial implementation of the HTML has a few differences from the original plan. Upon seeing how complex it will be to design this website, I decided to focus on the flashcards portion of the website, and will add other features, like a chat and vocab lessons if time permits.  
+The initial implementation of the HTML has a few differences from the original plan. Upon seeing how complex it will be to design this website, I decided to focus on the flashcards portion of the website, and will add other features, like a chat and vocab lessons if time permits. p.s. sorry my files are disgustingly disorganised, it was the only way I could get my images to display on the website.  
 
 My site now contains a login page, a home page with paths to a settings and main vocab page, a vocab sets page, a flashcard set maker page, and a flashcard page.   
 
@@ -66,7 +66,7 @@ The home page is pretty straightfoward, with some nav links, and some buttons th
 The settings page allows the user to select a color scheme and set some preferences for their flashcards using various input elements. the functionality will be implemented later.  
 
 ### Vocab:  
-This page contains folders of flashcard sets broken up usually by language, to be implemented is an add folder button that will allow the user to create and store their own language data/sets.  
+This page contains folders of flashcard sets broken up usually by language, to be implemented is an add folder button that will allow the user to create and store their own language data/sets. The add folder button will eventually also allow the user to search folders made by other users and import them. 
 
 ### Flashcard sets:  
 Upon clicking on a vocab folder, you are taken to a library of sets of flashcards for the user to study, and given an option to make more sets.  
