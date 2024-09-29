@@ -12,8 +12,7 @@
 
     <body>
         <header>
-            <h1>Lingua Franca</h1>
-            <h2>Flashcards</h2>
+            <h1>Lingua Franca - Homepage</h1>
             <h3 id="username">User_Name789</h3>
             <img src="assets/Globe_icon.jpg" alt="User Profile Image" style="width:36px; height:36px; border-radius:50%;">
         </header> 
@@ -21,15 +20,15 @@
         <hr style="width:95%; height:2px; background-color:gray; border:none;">
 
         <main>
-            <button style = "height: 30px; width: 30px;">&lt;</button>
+            <!-- Will allow the user to customise color scheme -->
+            <label for="primary_color">Select primary color:</label>
+            <input type="color" id="primary_color" name="primary_color" value="#FFFFFF"> 
+            <br>
+            <label for="secondary_color">Select secondary color:</label>
+            <input type="color" id="secondary_color" name="secondary_color" value="#000000">
+            <br>
 
-            <button style = "height: 40px; width: 75px;">Working on it</button>
-
-            <button style = "height: 400px; width: 300px;">
-                Click to flip (to be implemented)
-            </button>
-
-            <button style = "height: 40px; width: 75px;">Know it</button>
+            
         </main>
 
         <hr style="width:95%; height:2px; background-color:gray; border:none;">
@@ -37,9 +36,8 @@
         <footer>
             <nav>
                 <menu>
-                    <li><a href="flash_sets.html">&lt;- Back</a></li>
-                    <li><a href="index.html">Login</a></li>
-                    <li><a href="menu.html">Home</a></li>
+                  <li><a href="index.html">Login</a></li>
+                  <li><a href="menu.html">Home</a></li>
                 </menu>
             </nav> 
 
