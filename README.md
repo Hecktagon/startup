@@ -75,4 +75,6 @@ Upon clicking on a vocab folder, you are taken to a library of sets of flashcard
 When the user clicks "make a set" they are directed to the set maker page, where they can insert either a CSV format text to be broken up into flashcards, or a manual interface with calls to a translation service to help the user make new sets.   
 
 ### Flashcards:  
-When the user clicks on one of ther flashcard sets, they are presented with a simplistic flashcard display, which will cycle through flashcards in the set, play audio from a call to an AI voice service, and keep track fo which flashcards the user knows, and which they dont know. 
+When the user clicks on one of ther flashcard sets, they are presented with a simplistic flashcard display, which will cycle through flashcards in the set, play audio from a call to an AI voice service, and keep track fo which flashcards the user knows, and which they dont know.  
+
+***note to self*** add a friends system, and websocket updates so that when a friend releases a new set or if someone studies your set you get notified immediately. 
