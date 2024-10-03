@@ -66,15 +66,15 @@ The home page is pretty straightfoward, with some nav links, and some buttons th
 The settings page allows the user to select a color scheme and set some preferences for their flashcards using various input elements. the functionality will be implemented later.  
 
 ### Vocab:  
-This page contains folders of flashcard sets broken up usually by language, to be implemented is an add folder button that will allow the user to create and store their own language data/sets. The add folder button will eventually also allow the user to search folders made by other users and import them. 
+This page contains folders of flashcard sets broken up usually by language, to be implemented is an add folder button that will allow the user to create and store their own language data/sets **(Database)**. The add folder button will eventually also allow the user to search folders made by other users and import them **(Websocket/Database)**. 
 
 ### Flashcard sets:  
-Upon clicking on a vocab folder, you are taken to a library of sets of flashcards for the user to study, and given an option to make more sets.  
+Upon clicking on a vocab folder, you are taken to a library of sets of flashcards for the user to study, and given an option to make more sets **(Database)**. When another user is studying a set made by you, you will receive a notification **(Websocket)**. 
 
 ### Set maker:  
-When the user clicks "make a set" they are directed to the set maker page, where they can insert either a CSV format text to be broken up into flashcards, or a manual interface with calls to a translation service to help the user make new sets.   
+When the user clicks "make a set" they are directed to the set maker page, where they can insert either a CSV format text to be broken up into flashcards, or a manual interface with calls to a translation service **(3rd party service call)** to help the user make new sets.   
 
 ### Flashcards:  
-When the user clicks on one of ther flashcard sets, they are presented with a simplistic flashcard display, which will cycle through flashcards in the set, play audio from a call to an AI voice service, and keep track fo which flashcards the user knows, and which they dont know.  
+When the user clicks on one of ther flashcard sets, they are presented with a simplistic flashcard display, which will cycle through flashcards in the set, play audio from a call to an AI voice service **(3rd party service call)**, and keep track fo which flashcards the user knows, and which they dont know **(Database)**.  
 
-***note to self*** add a friends system, and websocket updates so that when a friend releases a new set or if someone studies your set you get notified immediately. 
+
