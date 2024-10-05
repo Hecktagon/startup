@@ -258,7 +258,7 @@ p {
 ```
 
 
-### *Animation:*  
+## *Animation:*  
 
 Animation is CSS works by providing different keyframes with different phases in that animation, which CSS will smothly transition between.  
 
