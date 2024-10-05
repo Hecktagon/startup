@@ -287,4 +287,23 @@ p {
     font-size: 20vh;
   }
 }
-```  
+```
+
+## *CSS Display*   
+The display element of CSS is used for resizing your website to fit differnt sized screens differently.  
+
+`none`	Don't display this element. The element still exists, but the browser will not render it.  
+`block`	Display this element with a width that fills its parent element. A p or div element has block display by default.  
+`inline`	Display this element with a width that is only as big as its content. A b or span element has inline display by default.  
+`flex`	Display this element's children in a flexible orientation.  
+`grid`	Display this element's children in a grid orientation.  
+
+<meta name="viewport" content="width=device-width,initial-scale=1" />  
+This meta tag should be included in the head element if your website uses CCS display, because by default mobile devices scale down websites.  
+
+### Other usefull display elements/attributes:  
+`float` The float property displays text to the side of an element and causes the text to wrap around the element.  
+`@media` the @media selector allow oyu to check if the website is displayed in portrait or landscape mode, and apply certian changes to your display accordingly.  
+`grid` a value of display that allows us to display elements in a grid shape that reshapes according to the size of the screen.  
+`flex` a value of display that allows you to partition elements into their own subsections that expand and contract to fit the screen.  
+
