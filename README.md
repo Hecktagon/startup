@@ -77,4 +77,4 @@ When the user clicks "make a set" they are directed to the set maker page, where
 ### Flashcards:  
 When the user clicks on one of ther flashcard sets, they are presented with a simplistic flashcard display, which will cycle through flashcards in the set, play audio from a call to an AI voice service ***(3rd party service call)***, and keep track fo which flashcards the user knows, and which they dont know ***(Database)***.  
 
-
+*hello*{:.sidenote}
