@@ -27,11 +27,13 @@ footer {
 
 .main_box {
     background-color: white;
+    color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: 15px;
+    box-sizing: border-box;
     padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     height: 75vh;
@@ -39,12 +41,27 @@ footer {
 }
 
 .menu_button {
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #8aa4be;
+    color: white;
+    width: 65%;
+    height: 25%;
+    margin: 10px 0; /* Add some margin to space out the buttons */
+}
+
+.username_box {
+    display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     width: 80%;
     height: 20%;
 }
 
-
+.username_box > * {
+    padding: 10px;
+}
