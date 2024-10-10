@@ -1,13 +1,7 @@
-header {
-    font-family: 'Franklin Gothic Medium';
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
 
 body {
-    background-color: #007BFF;
+    background-color: #070091;
+    color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -25,33 +19,42 @@ footer {
     align-items: center;
 }
 
+header {
+    font-family: 'Franklin Gothic Medium';
+    font-size: 100%;
+    height: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+a {
+    color: white;
+}
+
 .main_box {
     background-color: white;
     color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    place-items: center;
     border-radius: 15px;
     box-sizing: border-box;
     padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     height: 75vh;
-    width: 90vw;
+    width: 100vw;
 }
 
 .menu_button {
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #8aa4be;
+    border-radius: 10px;    
+    background-color: #747474;
     color: white;
-    width: 65%;
-    height: 25%;
-    margin: 10px 0; /* Add some margin to space out the buttons */
-}
+    width: 65vw;
+    height: 5vw;
+    margin: 10px 0;
+    /* align-content: center; */
+}  
 
 .username_box {
     display: flex;
