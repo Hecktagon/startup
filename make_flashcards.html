@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Lingua Franca</title>
         <meta name="Description" content="The login page for Lingua Franca">
-        <!-- Link to CSS here -->
+        <link rel="stylesheet" type="text/css" href="style.css">
         <!-- Link to JavaScript here -->
         <!-- <link rel="icon" href= /> -->
     </head>
@@ -14,21 +14,23 @@
         <header>
             <h1>Lingua Franca - Homepage</h1>
             <h2>Settings</h2>
-            <h3 id="username">User_Name789</h3>
-            <img  id="user_profile_pic" src="Globe_icon.jpg" alt="User Profile Image" style="width:36px; height:36px; border-radius:50%;">
+            <div class = "username_box">
+                <h3 id="username">User_Name789</h3>
+                <img  id="user_profile_pic" src="Globe_icon.jpg" alt="User Profile Image" style="width:36px; height:36px; border-radius:50%;">
+            </div>
         </header> 
 
         <hr style="width:95%; height:2px; background-color:gray; border:none;">
 
         <main>
             <!-- Will eventually source a translation service to help users fill out the back sides of their flashcards -->
-            <form action="flash_sets.html" method="get"></form>
+            <form action="flashcards.html" method="get"></form>
                 <textarea id="setname" name="setname" placeholder="Name your set"></textarea><br>
             </form>
 
             <hr style="width:95%; height:2px; background-color:gray; border:none;">
 
-            <form action="flash_sets.html" method="get">
+            <form action="flashcards.html" method="get">
                 <label for="csvInput">Paste your CSV data here:</label><br>
                 <textarea id="csvInput" name="csvInput" placeholder="Paste CSV data here..."></textarea><br>
                 <button type="submit">Submit</button>
@@ -36,12 +38,12 @@
 
             <hr style="width:95%; height:2px; background-color:gray; border:none;">
 
-            <form action="flash_sets.html" method="get">
+            <form action="flashcards.html" method="get">
                 <label for="front_word">Front</label><br>
                 <textarea id="front_word" name="front_word" placeholder="type a word or phrase"></textarea><br>
             </form>
 
-            <form action="flash_sets.html" method="get"></form>
+            <form action="flashcards.html" method="get"></form>
                 <label for="back_word">Back</label> <br>
                 <textarea id="back_word" name="back_word" placeholder="**call to translation service here**"></textarea><br>
             </form>
@@ -57,7 +59,7 @@
         <footer>
             <nav>
                 <menu>
-                    <li><a href="flash_sets.html">&lt;- Back</a></li>
+                    <li><a href="vocab.html">&lt;- Back</a></li>
                     <li><a href="index.html">Login</a></li>
                     <li><a href="menu.html">Home</a></li>
                 </menu>

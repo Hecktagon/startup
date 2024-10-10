@@ -5,43 +5,47 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Lingua Franca</title>
         <meta name="Description" content="The login page for Lingua Franca">
-        <!-- Link to CSS here -->
+        <link rel="stylesheet" type="text/css" href="style.css">
         <!-- Link to JavaScript here -->
         <!-- <link rel="icon" href= /> -->
     </head>
 
     <body>
+        
         <header>
-            <h1>Lingua Franca - Homepage</h1>
-            <h3 id="username">User_Name789</h3>
-            <img  id="user_profile_pic" src="Globe_icon.jpg" alt="User Profile Image" style="width:36px; height:36px; border-radius:50%;">
+            <h1 id = "title">Lingua Franca - Homepage</h1>
+
+            <div class = "username_box">
+                <h3 id="username">User_Name789</h3>
+                <img  id="user_profile_pic" src="Globe_icon.jpg" alt="User Profile Image" style="width:36px; height:36px; border-radius:50%;">
+            </div>
         </header> 
 
-        <hr style="width:95%; height:2px; background-color:gray; border:none;">
-
-        <main>
-            <button class="button">
-                <a href="vocab.html">Vocabulary</a>
-            </button>
-            <br>
-            <button class="button">
-                <a href="settings.html">Settings</a>
-            </button>
-            <br>
-            <button class="button">
-                <a href="vocab.html"><i>(Potential other page)</i></a>
-            </button>
-            <br>
-            <button class="button">
-                <a href="vocab.html">(Potential other page)</a>
-            </button>
-        </main>
-
-        <hr style="width:95%; height:2px; background-color:gray; border:none;">
+        <!-- <hr style="width:95%; height:2px; background-color:gray; border:none;"> -->
+        <div class = "main_box">
+            <main>
+                <button class="menu_button">
+                    <a href="vocab.html">Vocabulary</a>
+                </button>
+                <br>
+                <button class="menu_button">
+                    <a href="settings.html">Settings</a>
+                </button>
+                <br>
+                <button class="menu_button">
+                    <a href="vocab.html"><i>(Potential other page)</i></a>
+                </button>
+                <br>
+                <button class="menu_button">
+                    <a href="vocab.html">(Potential other page)</a>
+                </button>
+            </main>
+        </div>
+        <!-- <hr style="width:95%; height:2px; background-color:gray; border:none;"> -->
 
         <footer>
             <nav>
-                <menu>
+                <menu class = "link_menu">
                   <li><a href="index.html">Login</a></li>
                   <li><a href="menu.html">Home</a></li>
                 </menu>
