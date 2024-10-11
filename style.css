@@ -1,4 +1,3 @@
-
 body {
     background-color: #070091;
     color: white;
@@ -37,6 +36,7 @@ a {
     background-color: white;
     color: white;
     display: flex;
+    gap: 1rem;
     flex-direction: column;
     justify-content: center;
     align-items:center;
@@ -58,7 +58,7 @@ a {
     align-items:center;
     width: 50cqw;
     height: 10cqh; 
-    margin: 20px 0;
+    /* margin: 20px 0; */
     font-size: 5cqh;
 }  
 
@@ -92,6 +92,12 @@ a {
     position: relative; 
 }
 
+.vocab_button img {
+    width: 150%;
+    height: 110%;
+    object-fit: cover;
+}
+
 .button-figure {
     display: flex;
     flex-direction: column;
@@ -109,7 +115,6 @@ a {
     size: 100%
 } */
 
-
 .main_box_settings {
     background-color: white;
     color: black;
@@ -125,14 +130,11 @@ a {
 
 }
 
-
-
-
-#title{
-    position: fixed;
+/* #title{
     left: 0;
     margin-left: 10px;
-}
+} */
+
 .username_box {
     position: fixed;
     right: 0;
@@ -146,6 +148,7 @@ a {
 .username_box > * {
     padding: 10px;
 }
+
 .github_linkbox {
     position: fixed;
     right: 0;
@@ -155,6 +158,7 @@ a {
     align-items:center;
     margin: 10px;
 }
+
 .github_linkbox > *{
     margin:10px
 }
@@ -164,8 +168,40 @@ a {
     flex-direction: column;
     justify-content: center;
     align-items:center;
+    padding-inline-start: 0%;
 }
 
 .button_link{
     text-decoration: none;
+}
+
+#studied_notification{
+    background-color: white;
+    border-radius: 20px;
+    border-width: 1px ;
+    color: black;
+    align-self: flex-end;
+    transform: translateX(100%);
+    animation-name: slide_in_out;
+    animation-duration: 10s;
+    margin-bottom: 0.5rem;
+}
+
+#notification_text{
+    margin: 0.5rem;
+}
+
+@keyframes slide_in_out{
+    0% {
+        transform: translateX(115%);
+    }
+    15% {
+        transform: translateX(-15%);
+    }
+    85% {
+        transform: translateX(-15%);
+    }
+    100% {
+        transform: translateX(115%);
+    }
 }
