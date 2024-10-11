@@ -37,12 +37,13 @@ a {
     background-color: white;
     color: white;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items:center;
     box-sizing: border-box;
     padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    height: 75%;
+    height: 100%;
     width: 100%;
 
 }
@@ -50,15 +51,65 @@ a {
 .menu_button {
     border-radius: 10px;    
     background-color: #747474;
+    border-color: #ffffff;
     color: white;
     display: flex;
     justify-content: center;
     align-items:center;
-    width: 90cqw;
+    width: 50cqw;
     height: 10cqh; 
-    margin: 10px 0;
+    margin: 20px 0;
     font-size: 5cqh;
 }  
+
+.vocab_box {
+    background-color: white;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items:center;
+    box-sizing: border-box;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    height: 100%;
+    width: 100%;
+
+}
+
+.vocab_button{
+    border-radius: 50%;    
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20cqh;
+    height: 20cqh; 
+    margin: 10px 0;
+    font-size: 5cqh;
+    overflow: hidden; /* Hide overflow */
+    position: relative; /* Ensure the image is positioned relative to the button */
+}
+
+.button-figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.vocab_button_caption {
+    color: rgb(0, 0, 0); /* Adjust the color as needed */
+    font-size: 1em; /* Adjust the font size as needed */
+    margin-top: 5px; /* Space between the button and the caption */
+    text-align: center; /* Center the caption text */
+}
+
+/* .vocab_img {
+    size: 100%
+} */
+
+
 
 
 #title{
