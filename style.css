@@ -2,6 +2,7 @@ body {
     background-color: #070091;
     color: white;
     display: flex;
+    box-sizing: border-box;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -11,21 +12,26 @@ body {
 }
 
 footer {
+    width: 100%;
+    box-sizing: border-box;
     font-family: 'Franklin Gothic Medium';
-    display: flex;
-    flex: 0 30px;
-    flex-direction: row;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
+    flex: 0 30px;
+    /* flex-direction: row;
+    justify-items: space-between;
+    align-content: center; */
 }
 
 header {
+    width: 100%;
     font-family: 'Franklin Gothic Medium';
     display: flex;
-    flex: 0 80px;
-    flex-direction: row;
-    /* align-items: center;
-    justify-content: center; */
+    /* flex: 0 60px; */
+    justify-content: space-between;
+    align-items: center;
+    
 }
 
 a {
@@ -66,11 +72,12 @@ a {
     background-color: white;
     color: white;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items:center;
-    box-sizing: border-box;
+    gap: 0.5rem;
     padding: 10px;
+    align-items:center;
+    justify-items: center;
+    place-content: center;
+    box-sizing: border-box;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     height: 100%;
     width: 100%;
@@ -84,21 +91,25 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 20cqh;
-    height: 20cqh; 
-    margin: 10px 0;
+    width: 10cqw;
+    height: 10cqw; 
+    /* margin: 0.5rem 0; */
     font-size: 5cqh;
     overflow: hidden;
-    position: relative; 
+
 }
 
 .vocab_button img {
-    width: 150%;
-    height: 110%;
+    width: 175%;
+    height: 105%;
     object-fit: cover;
 }
 
 .button-figure {
+    margin-left: 5cqw;
+    margin-right: 5cqw;
+    margin-bottom: 5cqh;
+    margin-top: 5cqh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -130,14 +141,14 @@ a {
 
 }
 
-/* #title{
-    left: 0;
-    margin-left: 10px;
-} */
+#title{
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+}
 
 .username_box {
-    position: fixed;
-    right: 0;
+    margin-left: auto;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -150,17 +161,21 @@ a {
 }
 
 .github_linkbox {
-    position: fixed;
-    right: 0;
+    grid-column: 3;
+    justify-self: end;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items:center;
-    margin: 10px;
 }
 
 .github_linkbox > *{
-    margin:10px
+    margin: 0.5rem;
+}
+
+.nav_box{
+    grid-column: 2;
+    justify-self: center;
 }
 
 .link_menu {
