@@ -12,13 +12,13 @@
 
     <body>
         <header>
-            <h1>Lingua Franca</h1>
+            <h1 id = "title">Lingua Franca</h1>
         </header>
 
-        <hr style="width:95%; height:2px; background-color:gray; border:none;">
+        <hr style="width:95%; height:2px; background-color:white; border:none;">
 
-        <main>
-            <form method="get" action="menu.html">
+        <main class = "main_box">
+            <form class = "index_input" method="get" action="menu.html">
                 <div>
                   <span>Email: </span>
                   <input type="text" placeholder="your@email.com" />
@@ -26,31 +26,33 @@
                 <div>
                     <span>Username: </span>
                     <input type="text" placeholder="username" />
-                  </div>
+                </div>
                 <div>
                   <span>Password: </span>
                   <input type="password" placeholder="password" />
                 </div>
-                <button type="submit">Login</button>
-                <button type="submit">Create</button>
+                <div>
+                  <button type="submit">Login</button>
+                  <button type="submit">Create</button>
+                </div>
               </form>
         </main>
 
-        <hr style="width:95%; height:2px; background-color:gray; border:none;">
+        <hr style="width:95%; height:2px; background-color:white; border:none;">
 
         <footer>
-            <nav>
-                <menu>
-                  <li><a href="index.html">Login</a></li>
-                  <li><a href="menu.html">Home</a></li>
-                </menu>
-            </nav> 
-
-            <hr style="width:95%; height:2px; background-color:gray; border:none;">
-            <span class="text-reset">Tayler Hilton</span>
-            <br />
-            <a href="https://github.com/Hecktagon/startup">GitHub</a>
-        </footer>
+          <nav class = "nav_box">
+              <menu class = "link_menu">
+                  <a href="index.html">Login</a>
+                  <a href="menu.html">Home</a>
+              </menu>
+          </nav> 
+          <div class = "github_linkbox">
+              <span class="text-reset">Tayler Hilton</span>
+              <br/>
+              <a href="https://github.com/Hecktagon/startup">GitHub</a>
+          </div>
+      </footer>
     </body>
 
 </html>

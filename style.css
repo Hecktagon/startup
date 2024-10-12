@@ -1,5 +1,5 @@
 body {
-    background-color: #070091;
+    background-color: #ffffff;
     color: white;
     display: flex;
     box-sizing: border-box;
@@ -8,34 +8,45 @@ body {
     align-items: center;
     height: 100vh;
     width: 100vw;
+    /* min-width: auto;
+    min-height: auto; */
     margin: 0;
+    overflow: hidden;
+}
+
+a {
+    color: white;
 }
 
 footer {
+    background-color: #070091;
     width: 100%;
     box-sizing: border-box;
     font-family: 'Franklin Gothic Medium';
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    flex: 0 30px;
+    flex: 1 20vh;
     /* flex-direction: row;
     justify-items: space-between;
     align-content: center; */
 }
 
+hr{
+    margin: 3cqh;
+}
+
 header {
+    background-color: #070091;
     width: 100%;
     font-family: 'Franklin Gothic Medium';
+    font-size: 4vw;
     display: flex;
+    box-sizing: border-box;
     /* flex: 0 60px; */
     justify-content: space-between;
     align-items: center;
     
-}
-
-a {
-    color: white;
 }
 
 .main_box {
@@ -47,7 +58,7 @@ a {
     justify-content: center;
     align-items:center;
     box-sizing: border-box;
-    padding: 10px;
+    /* padding: 10px; */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     height: 100%;
     width: 100%;
@@ -65,15 +76,15 @@ a {
     width: 50cqw;
     height: 10cqh; 
     /* margin: 20px 0; */
-    font-size: 5cqh;
+    font-size: 7vw;
 }  
 
 .vocab_box {
     background-color: white;
     color: white;
     display: flex;
-    gap: 0.5rem;
-    padding: 10px;
+    /* gap: 0.5cqw; */
+    /* padding: 10vh; */
     align-items:center;
     justify-items: center;
     place-content: center;
@@ -106,8 +117,8 @@ a {
 }
 
 .button-figure {
-    margin-left: 5cqw;
-    margin-right: 5cqw;
+    margin-left: 1vw;
+    margin-right: 1vw;
     margin-bottom: 5cqh;
     margin-top: 5cqh;
     display: flex;
@@ -134,7 +145,7 @@ a {
     justify-content: center;
     align-items:center;
     box-sizing: border-box;
-    padding: 10px;
+    /* padding: 10px; */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     height: 100%;
     width: 100%;
@@ -142,8 +153,8 @@ a {
 }
 
 #title{
-    margin-left: auto;
-    margin-right: auto;
+    /* margin-left: auto;
+    margin-right: auto; */
     padding-left: 1rem;
 }
 
@@ -151,20 +162,27 @@ a {
     margin-left: auto;
     display: flex;
     flex-direction: row;
+    box-sizing: border-box;
     justify-content: center;
     align-items:center;
-    flex:0.5 45px;
+    /* flex:0.5 45px; */
 }
 
 .username_box > * {
     padding: 10px;
 }
 
+#user_profile_pic{
+    flex: 1;
+}
+    
+
 .github_linkbox {
     grid-column: 3;
     justify-self: end;
     display: flex;
     flex-direction: row;
+    box-sizing: border-box;
     justify-content: center;
     align-items:center;
 }
@@ -176,6 +194,7 @@ a {
 .nav_box{
     grid-column: 2;
     justify-self: center;
+    box-sizing: border-box;
 }
 
 .link_menu {
@@ -191,7 +210,12 @@ a {
 }
 
 #studied_notification{
-    background-color: white;
+    position: fixed;
+    width:60cqw;
+    max-width: 600px;
+    height: 6cqh;
+    top: 15vh;
+    background-color: rgb(207, 207, 207);
     border-radius: 20px;
     border-width: 1px ;
     color: black;
@@ -200,10 +224,31 @@ a {
     animation-name: slide_in_out;
     animation-duration: 10s;
     margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #notification_text{
-    margin: 0.5rem;
+    font-family: 'Trebuchet MS';
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Add ellipsis (...) for overflow text */
+} 
+
+.index_input {
+    color: black;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4cqh;
+}
+.index_input > *{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1cqw;
 }
 
 @keyframes slide_in_out{
@@ -211,13 +256,104 @@ a {
         transform: translateX(115%);
     }
     15% {
-        transform: translateX(-15%);
+        transform: translateX(-5%);
     }
     85% {
-        transform: translateX(-15%);
+        transform: translateX(-5%);
     }
     100% {
         transform: translateX(115%);
 
     }
 }
+
+
+/* for when screen is small */
+@media screen and (max-width: 600px) {
+    footer{
+        width: 100%;
+    font-family: 'Franklin Gothic Medium';
+    font-size: 4vw;
+    display: flex;
+    /* flex: 0 60px; */
+    justify-content: space-between;
+    align-items: center;
+    }
+
+    .github_linkbox {
+        grid-column: 3;
+        justify-self: end;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items:center;
+    }
+    
+    .nav_box{
+        grid-column: 2;
+        justify-self: center;
+    }
+
+    .vocab_box {
+        background-color: white;
+        color: white;
+        display: grid;
+        /* gap: 0.5cqw; */
+        /* padding: 10vh; */
+        grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+        align-items:center;
+        justify-items: center;
+        place-content: center;
+        box-sizing: border-box;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+        height: 100%;
+        width: 100%;
+    
+    }
+    
+    .vocab_button{
+        border-radius: 50%;    
+        background-color: #ffffff;
+        color: rgb(0, 0, 0);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 10cqw;
+        height: 10cqw; 
+        /* margin: 0.5rem 0; */
+        font-size: 5cqh;
+        overflow: hidden;
+    
+    }
+    
+    .vocab_button img {
+        width: 175%;
+        height: 105%;
+        object-fit: cover;
+    }
+    
+}
+
+/* for setting caps when screen gets bigger */
+@media screen and (min-width: 600px) { 
+    header {
+      font-size: 20px;
+    }
+
+    .menu_button {
+        border-radius: 10px;    
+        background-color: #747474;
+        border-color: #ffffff;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items:center;
+        width: 50cqw;
+        height: 10cqh; 
+        /* margin: 20px 0; */
+        font-size: 28px;
+    }  
+    
+  }
+
