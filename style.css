@@ -11,7 +11,7 @@ body {
     /* min-width: auto;
     min-height: auto; */
     margin: 0;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 a {
@@ -62,8 +62,104 @@ header {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     height: 100%;
     width: 100%;
+}
+
+.main_box_editor {
+    background-color: white;
+    color: white;
+    display: flex;
+    /* gap: 1rem; */
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    box-sizing: border-box;
+    /* padding: 10px; */
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  */
+    height: 100%;
+    width: 100%;
 
 }
+
+.textbox{
+    font-family: 'Arial', sans-serif;
+    resize:none;
+    font-size: 4vh;
+    color: #333;
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 75%;
+    height: 5vh;
+}
+
+#setname{
+    height: 7vh;
+}
+
+.flashcard_editor{
+    width:90%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.make_flashcards{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+}
+
+.separator{
+    width: 2px;
+    height: 100%; 
+    background-color:#6e6e6e;
+    margin: 0px;
+;
+}
+
+.flashcard_display{
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    justify-content: center;
+    place-items: center;
+    width: 50%;
+    height: 100%;
+    color:black;
+}
+
+.made_flashcard{
+    font-family: monospace;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: #ededed;
+    border: solid rgb(213, 213, 213) 1px;
+    border-radius: 1vh;
+    margin:1vh;
+    padding-left: 1vh;
+    padding-right: 1vh;
+    width:50%;
+}
+
+.made_flashcard > *{
+    margin:0;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.side_flashcard{
+    display:flex;
+    flex-direction: row;
+}
+
+
+
 
 .menu_button {
     border-radius: 10px;    

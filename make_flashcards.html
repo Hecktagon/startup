@@ -21,36 +21,50 @@
 
         <hr style="width:95%; height:2px; background-color:gray; border:none;">
 
-        <main>
+        <main class = "main_box_editor">
             <!-- Will eventually source a translation service to help users fill out the back sides of their flashcards -->
             <form action="flashcards.html" method="get"></form>
-                <textarea id="setname" name="setname" placeholder="Name your set"></textarea><br>
+                <textarea class = "textbox" id="setname" name="setname" placeholder="Name your set"></textarea><br>
             </form>
-
             <hr style="width:95%; height:2px; background-color:gray; border:none;">
+            <div class = "flashcard_editor">
+                <div class = "make_flashcards">
+                    <form action="flashcards.html" method="get">
+                        <label for="csvInput">Paste your CSV data here:</label>
+                        <textarea  class = "textbox" id="csvInput" name="csvInput" placeholder="Paste CSV data here..."></textarea>
+                        <button type="submit">Submit</button>
+                    </form>
 
-            <form action="flashcards.html" method="get">
-                <label for="csvInput">Paste your CSV data here:</label><br>
-                <textarea id="csvInput" name="csvInput" placeholder="Paste CSV data here..."></textarea><br>
-                <button type="submit">Submit</button>
-            </form>
+                    <hr style="width:95%; height:2px; background-color:gray; border:none;">
 
-            <hr style="width:95%; height:2px; background-color:gray; border:none;">
+                    <form class = "side_flaschard" action="flashcards.html" method="get">
+                        <label for="front_word">Front</label>
+                        <textarea class = "textbox" id="front_word" name="front_word" placeholder="type a word or phrase"></textarea>
+                    </form>
 
-            <form action="flashcards.html" method="get">
-                <label for="front_word">Front</label><br>
-                <textarea id="front_word" name="front_word" placeholder="type a word or phrase"></textarea><br>
-            </form>
+                    <form class = "side_flaschard" action="flashcards.html" method="get"></form>
+                        <label for="back_word">Back</label>
+                        <textarea class = "textbox" id="back_word" name="back_word" placeholder="**call to translation service here**"></textarea>
+                    </form>
 
-            <form action="flashcards.html" method="get"></form>
-                <label for="back_word">Back</label> <br>
-                <textarea id="back_word" name="back_word" placeholder="**call to translation service here**"></textarea><br>
-            </form>
-
-            <!-- will eventually add another set of inputs for a front and back word -->
-            <button>
-                + Add another flashcard +
-            </button>
+                    <!-- will eventually add another set of inputs for a front and back word -->
+                    <button>
+                        + Add another flashcard +
+                    </button>
+                </div>
+                <div class = "separator"></div>
+                <div class = "flashcard_display">
+                    <div class = "made_flashcard"><p class = "frontword">To speak</p> <div class = "separator"></div> <p class = "backword">To speak</p></div>
+                    <div class = "made_flashcard">I | Yo</div>
+                    <div class = "made_flashcard">You | Tu</div>
+                    <div class = "made_flashcard">He | El</div>
+                    <div class = "made_flashcard">She | Ella</div>
+                    <div class = "made_flashcard">We | Nosotros/Nosotras</div>
+                    <div class = "made_flashcard">They | Ellos/Ellas</div>
+                    <div class = "made_flashcard">Spanish | Espanol</div>
+                    <div class = "made_flashcard">A Little | Un Poco</div>
+                </div>
+            </div>
         </main>
 
         <hr style="width:95%; height:2px; background-color:gray; border:none;">
