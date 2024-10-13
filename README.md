@@ -76,3 +76,29 @@ When the user clicks "make a set" they are directed to the set maker page, where
 
 ### Flashcards:  
 When the user clicks on one of ther flashcard sets, they are presented with a simplistic flashcard display, which will cycle through flashcards in the set, play audio from a call to an AI voice service ***(3rd party service call)***, and keep track fo which flashcards the user knows, and which they dont know ***(Database)***.  
+
+
+# **Step 2 CSS:**  
+
+### Changes:   
+I made a couple funcitonality changes to the website, the main one being cutting out the flashcard_sets.html page, and allowing users to just have one large database of flashcards per floder, instead of multiple sets. I inted to implemetn some sort of way for users to rank the importance of their flaschards to allow them to control what order they learn terms in.   
+
+### Header, footer, and main content body:  
+Each page contains a header and footer that come intially on a blue background. The header for each page contains the title of the page, as well as a username and profile picture. The footer for each page contains useful links to other places in the website, including a back button. It also contains the github link in the bottom right corner. Each page has a unique main content body to sevr the puroses of that page. this main content body is displayed between the header and footer, intitally on a white background.   
+
+### Navigation elements:  
+The Footer contains a nav box with links to the home and login pages, as well as a back button to allow the user to back out of certain pages. The Menu and Vocab pages also contain buttons that link to other pages.  
+
+### Responsive to window resizing:  
+Holy cow this was painful to implement, but I finally got all my pages to be reasonably responsive to resizing, I even checked the website on my phone and it seems to resize pretty well.   
+
+### Application elements:  
+There are a lot of application elements. There is a button on the vocab page "make new folder" that takes the user to a flashcard maker page, in which they can make and add flashcards, either one at a time, in in bulk using CSV format, and then edit or delete the flashcards they are making. There is also a setting page accesible from the main menu which has elements that will allow users to set a custom color scheme, as well as customise their flashcard experience. the flashcard page itself allows users to study flaschards from their sets, and will keep track of which terms the users did and ddint know.   
+
+### Application text content:  
+There is a lot of text content, including labels on buttons and textboxes to help the user navigate the site, and many places for the user to input text.  
+
+### Application images:  
+The most prominent images on the website are the user profile picture, and the coverrs for the vocab buttons. Both of these will eventually be customizeable by the user.  
+
+
