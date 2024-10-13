@@ -27,42 +27,46 @@
                 <textarea class = "textbox" id="setname" name="setname" placeholder="Name your set"></textarea><br>
             </form>
             <hr style="width:95%; height:2px; background-color:gray; border:none;">
+
             <div class = "flashcard_editor">
+
                 <div class = "make_flashcards">
-                    <form action="flashcards.html" method="get">
-                        <label for="csvInput">Paste your CSV data here:</label>
+
+                    <form class = "csv_input_box" action="flashcards.html" method="get">
+                        <!-- <label for="csvInput">Paste your CSV data here:</label> -->
                         <textarea  class = "textbox" id="csvInput" name="csvInput" placeholder="Paste CSV data here..."></textarea>
-                        <button type="submit">Submit</button>
+                        <button type="submit"  class = "simple_button">Submit</button>
                     </form>
 
-                    <hr style="width:95%; height:2px; background-color:gray; border:none;">
+                    <hr>
 
                     <form class = "side_flaschard" action="flashcards.html" method="get">
-                        <label for="front_word">Front</label>
-                        <textarea class = "textbox" id="front_word" name="front_word" placeholder="type a word or phrase"></textarea>
+                        <!-- <label for="front_word">Front</label> -->
+                        <textarea class = "textbox" id="front_word" name="front_word" placeholder="Front of card"></textarea>
                     </form>
 
-                    <form class = "side_flaschard" action="flashcards.html" method="get"></form>
-                        <label for="back_word">Back</label>
-                        <textarea class = "textbox" id="back_word" name="back_word" placeholder="**call to translation service here**"></textarea>
+                    <form class = "side_flaschard" action="flashcards.html" method="get">
+                        <!-- <label for="back_word">Back</label> -->
+                        <textarea class = "textbox" id="back_word" name="back_word" placeholder="Back of card"></textarea>
                     </form>
 
                     <!-- will eventually add another set of inputs for a front and back word -->
-                    <button>
-                        + Add another flashcard +
+                    <button id = "add_flashcard_button" class = "simple_button">
+                        Add Flashcard
                     </button>
                 </div>
-                <div class = "separator"></div>
+                
+                <div class = "separator" id = "editor_split"></div>
+
                 <div class = "flashcard_display">
-                    <div class = "made_flashcard"><p class = "frontword">To speak</p> <div class = "separator"></div> <p class = "backword">To speak</p></div>
-                    <div class = "made_flashcard">I | Yo</div>
-                    <div class = "made_flashcard">You | Tu</div>
-                    <div class = "made_flashcard">He | El</div>
-                    <div class = "made_flashcard">She | Ella</div>
-                    <div class = "made_flashcard">We | Nosotros/Nosotras</div>
-                    <div class = "made_flashcard">They | Ellos/Ellas</div>
-                    <div class = "made_flashcard">Spanish | Espanol</div>
-                    <div class = "made_flashcard">A Little | Un Poco</div>
+                    <div class = "made_flashcard"><p class = "frontword">To speak</p> <p>|</p> <p class = "backword">Hablar</p></div>
+                    <div class = "made_flashcard"><p class = "frontword">I</p> <p>|</p> <p class = "backword">Yo</p></div>
+                    <div class = "made_flashcard"><p class = "frontword">You</p> <p>|</p> <p class = "backword">Tu</p></div>
+                    <div class = "made_flashcard"><p class = "frontword">He</p> <p>|</p> <p class = "backword">El</p></div>
+                    <div class = "made_flashcard"><p class = "frontword">She</p> <p>|</p> <p class = "backword">Ella</p></div>
+                    <div class = "made_flashcard"><p class = "frontword">We</p> <p>|</p> <p class = "backword">Nosotros</p></div>
+                    <div class = "made_flashcard"><p class = "frontword">They</p> <p>|</p> <p class = "backword">Ellos</p></div>
+                    <div class = "made_flashcard"><p class = "frontword">Spanish</p> <p>|</p> <p class = "backword">Espanol</p></div>
                 </div>
             </div>
         </main>
