@@ -393,8 +393,83 @@ for (const val of arr) {
 `break` - exits a loop  
 `continue` - goes to next iteration  
 
+=> Function -
+```
+const a = [1, 2, 3, 4];
+
+// standard function syntax
+a.sort(function (v1, v2) {
+  return v1 - v2;
+});
+
+// arrow function syntax
+a.sort((v1, v2) => v1 - v2);
+```
+
+=> functions can also use {} to change functionality - 
+```
+() => 3;
+// RETURNS: 3
+
+() => {
+  3;
+};
+// RETURNS: undefined
+
+() => {
+  return 3;
+};
+// RETURNS: 3
+```
+
 
 ### String:  
+strings are indicated using `''` `""` or backticks. backticks indicate a string literal that may contain JavaScript that is evaluated in place and concatenated into the string. A string literal replacement specifier is declared with a dollar sign followed by a curly brace pair. Anything inside the curly braces is evaluated as JavaScript. You can also use backticks to create multiline strings without having to explicitly escape the newline characters using \n.  
+```
+'quoted text'; // " also works
+
+const l = 'literal';
+console.log(`string ${l + (1 + 1)} text`);
+// OUTPUT: string literal2 text
+```
+**String Functions:**  
+`length`	The number of characters in the string  
+`indexOf()`	The starting index of a given substring  
+`split()`	Split the string into an array on the given delimiter string  
+`startsWith()`	True if the string has a given prefix  
+`endsWith()`	True if the string has a given suffix  
+`toLowerCase()`	Converts all characters to lowercase  
+```
+const s = 'Example:조선글';
+
+console.log(s.length);
+// OUTPUT: 11
+console.log(s.indexOf('조선글'));
+// OUTPUT: 8
+console.log(s.split(':'));
+// OUTPUT: ['Example', '조선글']
+console.log(s.startsWith('Ex'));
+// OUTPUT: true
+console.log(s.endsWith('조선글'));
+// OUTPUT: true
+console.log(s.toLowerCase());
+// OUTPUT: example:조선글
+```
+
+### Arrays:  
+**Array functions:**  
+`push`	Add an item to the end of the array	`a.push(4)`  
+`pop`	Remove an item from the end of the array	`x = a.pop()`  
+`slice`	Return a sub-array	`a.slice(1,-1)`  
+`sort`	Run a function to sort an array in place	`a.sort((a,b) => b-a)`  
+`values`	Creates an iterator for use with a for of loop	`for (i of a.values()) {...}`  
+`find`	Find the first item satisfied by a test function	`a.find(i => i < 2)`  
+`forEach`	Run a function on each array item	`a.forEach(console.log)`  
+`reduce`	Run a function to reduce each array item to a single item	`a.reduce((a, c) => a + c)`  
+`map`	Run a function to map an array to a new array	`a.map(i => i+i)`  
+`filter`	Run a function to remove items	`a.filter(i => i%2)`  
+`every`	Run a function to test if all items match	`a.every(i => i < 3)`  
+`some`	Run a function to test if any items match	`a.some(i => i < 1)`  
 
 
 ## *Built in Javascript Functions:*
@@ -416,6 +491,131 @@ Javascript, similarly to CSS, can be accesed in the HTML by importing a javascri
 ### Useful tag attributes for Javascript:  
 `onclick = "functionName()"` allows for a call to any linked javascript function when the tag is clicked.  
 
+## JSON:  
+Most commonly, a JSON document contains an object. Objects contain zero or more key value pairs. The key is always a string, and the value must be one of the valid JSON data types. Key value pairs are delimited with commas. Curly braces delimit an object, square brackets and commas delimit arrays, and strings are always delimited with double quotes.  
+
+Here is an example of a JSON document.  
+```
+{
+  "class": {
+    "title": "web programming",
+    "description": "Amazing"
+  },
+  "enrollment": ["Marco", "Jana", "فَاطِمَة"],
+  "start": "2025-02-01",
+  "end": null
+}
+```  
+
+You can convert JSON to, and from, JavaScript using the JSON.parse and JSON.stringify functions.  
+```
+const obj = { a: 2, b: 'crockford', c: undefined };
+const json = JSON.stringify(obj);
+const objFromJson = JSON.parse(json);
+
+console.log(obj, json, objFromJson);
+
+// OUTPUT:
+// {a: 2, b: 'crockford', c: undefined}
+// {"a":2, "b":"crockford"}
+// {a: 2, b: 'crockford'}
+```
+
+## Objects and Classes:  
+Objects can be created with the new operator. This causes the object's constructor to be called. Once declared you can add properties to the object by simply referencing the property name in an assignment. Any type of variable can be assigned to a property. This includes a sub-object, array, or function. The properties of an object can be referenced either with dot (obj.prop) or bracket notation (obj['prop']).  
+```
+const obj = new Object({ a: 3 });
+obj['b'] = 'fish';
+obj.c = [1, 2, 3];
+obj.hello = function () {
+  console.log('hello');
+};
+
+console.log(obj);
+// OUTPUT: {a: 3, b: 'fish', c: [1,2,3], hello: func}
+```  
+
+### Object built-in Functions:   
+`entries`	Returns an array of key value pairs  
+`keys`	Returns an array of keys  
+`values`	Returns an array of values  
+
+### Constructors:   
+A constructor is a function that returns an object. Objects have "this" pointers, ass seen below, that operate similarly to python "self".  
+```
+function Person(name) {
+  return {
+    name: name,
+    log: function () {
+      console.log('My name is ' + this.name);
+    },
+  };
+}
+
+const p = new Person('Eich');
+p.log();
+// OUTPUT: My name is Eich
+```
+
+### Classes:  
+You can use classes to define objects. Using a class clarifies the intent to create a reusable component rather than a one-off object. Class declarations look similar to declaring an object, but classes have an explicit constructor and assumed function declarations. The person object from above would look like the following when converted to a class.  
+```
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+
+  log() {
+    console.log('My name is ' + this.name);
+  }
+}
+
+const p = new Person('Eich');
+p.log();
+// OUTPUT: My name is Eich
+```  
+You can make properties and functions of classes private by prefixing them with a #.  
+```
+class Person {
+  #name;
+
+  constructor(name) {
+    this.#name = name;
+  }
+}
+
+const p = new Person('Eich');
+p.#name = 'Lie';
+// OUTPUT: Uncaught SyntaxError: Private field '#name' must be declared in an enclosing class
+```   
+
+Classes can be extended by using the extends keyword to define inheritance. Parameters that need to be passed to the parent class are delivered using the super function. Any functions defined on the child that have the same name as the parent override the parent's implementation. A parent's function can be explicitly accessed using the super keyword.  
+```
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+
+  print() {
+    return 'My name is ' + this.name;
+  }
+}
+
+class Employee extends Person {
+  constructor(name, position) {
+    super(name);
+    this.position = position;
+  }
+
+  print() {
+    return super.print() + '. I am a ' + this.position;
+  }
+}
+
+const e = new Employee('Eich', 'programmer');
+console.log(e.print());
+// OUTPUT: My name is Eich. I am a programmer
+```  
 
 
 
