@@ -322,8 +322,20 @@ Javascript has similar syntax to C languages, using {} to delimit scopes, and co
 
 **Types:**  
 `Null` - variable that hasnt been asigned a value.  
+`Undefined` -	The type of a variable that has not been defined.  
+`Boolean` -	true or false.  
+`Number` -	A 64-bit signed number.  
+`BigInt` -	A number of arbitrary magnitude.  
+`String` - A textual sequence of characters.  
+`Symbol` -	A unique value.  
 
-
+**Object Types:**  
+`Object`	A collection of properties represented by name-value pairs. Values can be of any type.	`{a:3, b:'fish'}`  
+`Function`	An object that has the ability to be called.	`function a() {}`  
+`Date`	Calendar dates and times.	`new Date('1995-12-17')`  
+`Array`	An ordered sequence of any type.	`[3, 'fish']`  
+`Map`	A collection of key-value pairs that support efficient lookups.	`new Map()`  
+`JSON`	A lightweight data-interchange format used to share information across programs.	`{"a":3, "b":"fish"}`  
 
 
 ## *Built in Javascript Functions:*
