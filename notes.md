@@ -314,6 +314,18 @@ Javascript has similar syntax to C languages, using {} to delimit scopes, and co
 
 ## *Syntax:*  
 
+### Varibles & Types:  
+**Variables:**  
+`var variable_name` - This one is outdated, and should be avoided to avoid hard-to-debug errors.   
+`let variable_name` - a normal variable, can be changed.  
+`const const_name` - a varible that throws an error if you try to change it.   
+
+**Types:**  
+`Null` - variable that hasnt been asigned a value.  
+
+
+
+
 ## *Built in Javascript Functions:*
 `console.log(message)` - outputs a message to console. placeholders can be used in the message to allow for the insertion of variables into the message, %s for strings:  
 %d or %i for integers  
@@ -331,7 +343,7 @@ Javascript has similar syntax to C languages, using {} to delimit scopes, and co
 Javascript, similarly to CSS, can be accesed in the HTML by importing a javascript page in the HTML file, or by directly inserting it within a <script> tag.   
 
 ### Useful tag attributes for Javascript:  
-`onclick = "functionName()` allows for a call to any linked javascript function when the tag is clicked.  
+`onclick = "functionName()"` allows for a call to any linked javascript function when the tag is clicked.  
 
 
 
