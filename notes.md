@@ -307,3 +307,32 @@ This meta tag should be included in the head element if your website uses CCS di
 `grid` a value of display that allows us to display elements in a grid shape that reshapes according to the size of the screen.  
 `flex` a value of display that allows you to partition elements into their own subsections that expand and contract to fit the screen.  
 
+
+# **Javascript**
+
+Javascript has similar syntax to C languages, using {} to delimit scopes, and conventinally ; to end statements. 
+
+## *Syntax:*  
+
+## *Built in Javascript Functions:*
+`console.log(message)` - outputs a message to console. placeholders can be used in the message to allow for the insertion of variables into the message, %s for strings:  
+%d or %i for integers  
+%f for floating-point numbers  
+%o or %O for objects  
+%c for CSS styling on the output  
+
+`console.time('timerlabel')` and `console.timeEnd('timerlabel')` - time starts a timer and outputs the time elapsed when timeEnd is called with the same label. can be used to see how long a piece of code is taking to run.  
+
+`console.count('counterlabel')` outputs the number of times a count function with that label has been run, useful for checking to see how often a block of code runs.  
+
+
+## Using Javascript in HTML:  
+
+Javascript, similarly to CSS, can be accesed in the HTML by importing a javascript page in the HTML file, or by directly inserting it within a <script> tag.   
+
+### Useful tag attributes for Javascript:  
+`onclick = "functionName()` allows for a call to any linked javascript function when the tag is clicked.  
+
+
+
+
