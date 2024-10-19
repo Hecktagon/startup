@@ -337,6 +337,65 @@ Javascript has similar syntax to C languages, using {} to delimit scopes, and co
 `Map`	A collection of key-value pairs that support efficient lookups.	`new Map()`  
 `JSON`	A lightweight data-interchange format used to share information across programs.	`{"a":3, "b":"fish"}`  
 
+### General Syntax:  
+
+Ternary Operator - `a === 1 ? console.log(1) : console.log('not 1');`  
+
+For Loop - 
+```
+for (let i = 0; i < 2; i++) {
+  console.log(i);
+}
+```  
+
+Do While - 
+```
+let i = 0;
+do {
+  console.log(i);
+  i++;
+} while (i < 2);
+// OUTPUT: 0 1
+```  
+
+while - 
+```
+let i = 0;
+while (i < 2) {
+  console.log(i);
+  i++;
+}
+// OUTPUT: 0 1
+```
+
+For In-
+The for in statement iterates over an object's property names.
+```
+const obj = { a: 1, b: 'fish' };
+for (const name in obj) {
+  console.log(name);
+}
+// OUTPUT: a
+// OUTPUT: b
+```
+
+For Of - 
+The for of statement iterates over an iterable's (Array, Map, Set, ...) property values.
+```
+const arr = ['a', 'b'];
+for (const val of arr) {
+  console.log(val);
+}
+// OUTPUT: 'a'
+// OUTPUT: 'b'
+```  
+
+`break` - exits a loop  
+`continue` - goes to next iteration  
+
+
+### String:  
+
 
 ## *Built in Javascript Functions:*
 `console.log(message)` - outputs a message to console. placeholders can be used in the message to allow for the insertion of variables into the message, %s for strings:  
