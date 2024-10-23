@@ -780,4 +780,14 @@ rejected - Failed to complete
 We need to be able to set the state to fulfilled when things complete correctly, or to rejected when an error happens. The promise executor function takes two functions as parameters, resolve and reject. Calling resolve sets the promise to the fulfilled state, and calling reject sets the promise to the rejected state.  
 
 
+## Using Node:  
+Create your project directory  
+Initialize it for use with NPM by running `npm init -y`  
+Make sure `.gitignore` file contains `node_modules`  
+Install any desired packages with `npm install <package name here>`  
+Add `require('<package name here>')` to your application's JavaScript  
+Use the code the package provides in your JavaScript  
+Run your code with `node index.js`  
+
+
 
