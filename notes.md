@@ -790,4 +790,14 @@ Use the code the package provides in your JavaScript
 Run your code with `node index.js`  
 
 
+# **Vite**  
 
+Vite is a way to bundle all your website code into easily accessible compartments, and provides other handy actions as well, such as converting code over to react.  
+
+here is how to setup a Vite environment:  
+```
+npm create vite@latest demoVite -- --template react
+cd demoVite
+npm install
+npm run dev
+```  
