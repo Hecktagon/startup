@@ -10,7 +10,7 @@ html{
     overflow: auto;
 }
 
-body {
+.body {
     background-color: #ffffff;
     color: white;
     display: flex;
