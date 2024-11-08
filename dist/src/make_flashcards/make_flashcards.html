@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Lingua Franca</title>
+        <meta name="Description" content="The login page for Lingua Franca">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <!-- Link to JavaScript here -->
+        <!-- <link rel="icon" href= /> -->
+    </head>
+
+    <body>
+        <header>
+            <h1 id = "title">Lingua Franca - Set Editor</h1>
+            <div class = "username_box">
+                <h3 id="username">User_Name789</h3>
+                <img  id="user_profile_pic" src="Globe_icon.jpg" alt="User Profile Image" style="width:36px; height:36px; border-radius:50%;">
+            </div>
+        </header> 
+
+        <hr style="width:95%; height:2px; background-color:gray; border:none;">
+
+        <main class = "main_box_editor">
+            <!-- Will eventually source a translation service to help users fill out the back sides of their flashcards -->
+            <form action="flashcards.html" method="get"></form>
+                <textarea class = "textbox" id="setname" name="setname" placeholder="Name your set"></textarea><br>
+            </form>
+            <hr style="width:95%; height:2px; background-color:gray; border:none;">
+
+            <div class = "flashcard_editor">
+                
+
+                <div class = "make_flashcards">
+
+                    <form class = "csv_input_box" action="flashcards.html" method="get">
+                        <!-- <label for="csvInput">Paste your CSV data here:</label> -->
+                        <textarea  class = "textbox" id="csvInput" name="csvInput" placeholder="Paste CSV data here..."></textarea>
+                        <button type="submit"  class = "simple_button">Submit</button>
+                    </form>
+
+                    <hr>
+
+                    <form class = "side_flaschard" action="flashcards.html" method="get">
+                        <!-- <label for="front_word">Front</label> -->
+                        <textarea class = "textbox" id="front_word" name="front_word" placeholder="Front of card"></textarea>
+                    </form>
+
+                    <form class = "side_flaschard" action="flashcards.html" method="get">
+                        <!-- <label for="back_word">Back</label> -->
+                        <textarea class = "textbox" id="back_word" name="back_word" placeholder="Back of card"></textarea>
+                    </form>
+
+                    <!-- will eventually add another set of inputs for a front and back word -->
+                    <button id = "add_flashcard_button" class = "simple_button">
+                        Add Flashcard
+                    </button>
+                </div>
+                
+                <div class = "separator" id = "editor_split"></div>
+
+                <div class = "flashcard_display">
+                    <div class = "made_flashcard"><p class = "frontword">To speak</p> <p>|</p> <p class = "backword">Hablar</p><button class = "delete_button">X</button></div>
+                    <div class = "made_flashcard"><p class = "frontword">I</p> <p>|</p> <p class = "backword">Yo</p><button class = "delete_button">X</button></div>
+                    <div class = "made_flashcard"><p class = "frontword">You</p> <p>|</p> <p class = "backword">Tu</p><button class = "delete_button">X</button></div>
+                    <div class = "made_flashcard"><p class = "frontword">He</p> <p>|</p> <p class = "backword">El</p><button class = "delete_button">X</button></div>
+                    <div class = "made_flashcard"><p class = "frontword">She</p> <p>|</p> <p class = "backword">Ella</p><button class = "delete_button">X</button></div>
+                    <div class = "made_flashcard"><p class = "frontword">We</p> <p>|</p> <p class = "backword">Nosotros</p><button class = "delete_button">X</button></div>
+                    <div class = "made_flashcard"><p class = "frontword">They</p> <p>|</p> <p class = "backword">Ellos</p><button class = "delete_button">X</button></div>
+                    <div class = "made_flashcard"><p class = "frontword">Spanish</p> <p>|</p> <p class = "backword">Espanol</p><button class = "delete_button">X</button></div>
+                </div>
+            </div>
+        </main>
+
+        <hr style="width:95%; height:2px; background-color:gray; border:none;">
+
+        <footer>
+            <nav class = "nav_box">
+                <menu class = "link_menu">
+                    <a href="vocab.html">&lt;- Back</a>
+                    <a href="login.html">Login</a>
+                    <a href="menu.html">Home</a>
+                </menu>
+            </nav> 
+            <div class = "github_linkbox">
+                <span class="text-reset">Tayler Hilton</span>
+                <br/>
+                <a href="https://github.com/Hecktagon/startup">GitHub</a>
+            </div>
+        </footer>
+
+</html>
