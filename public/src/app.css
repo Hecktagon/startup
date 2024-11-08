@@ -517,11 +517,13 @@ header {
         flex-direction: row;
         justify-content: center;
         align-items:center;
+        margin-right: 2vw;
     }
     
     .nav_box{
         grid-column: 2;
         justify-self: center;
+        margin-left: 3vw;
     }
 
     .vocab_box {
@@ -620,7 +622,7 @@ header {
         padding-bottom: 1vh;
         padding-left: 1vw;
         padding-right: 1vw;
-        height: 65.7vh;
+        height: 100vh;
         width: auto;
         box-shadow: none;
         /* overflow-x: hidden; */
