@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
@@ -20,6 +20,38 @@ import { Vocab } from './vocab/vocab';
     <Route path='*' element={<NotFound />} />
 </Routes>
 
+function ProfilePicture() {
+    const [image, setImage] = useState(null);
+    const handleImageUpload = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            setImage(reader.result);
+          };
+          reader.readAsDataURL(file);
+        }
+      };
+      return (
+        <div>
+          <label htmlFor="upload-button">
+            {image ? (
+              <img className="user_profile_pic" src={image} alt="Profile" />
+            ) : (
+              <div className="user_profile_pic">
+              </div>
+            )}
+          </label>
+          <input
+            id="upload-button"
+            type="file"
+            style={{ display: 'none' }}
+            onChange={handleImageUpload}
+          />
+        </div>
+      );
+    }
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -30,7 +62,8 @@ export default function App() {
                     {/* this will eventually only be displayed if we are past the login page */}
                 <div className = "username_box">
                     <h3 id="username">User_Name789</h3> 
-                    <img  id="user_profile_pic" src="Globe_icon.jpg" alt="User Profile Image"></img>
+                    <ProfilePicture />
+                    {/* <img  id="user_profile_pic" src="Globe_icon.jpg" alt="User Profile Image"></img> */}
                 </div>
             </header> 
 
@@ -65,6 +98,8 @@ export default function App() {
   );
 }
 
+
+
 function NotFound() {
     return <main className='container-fluid bg-secondary text-center'>404: Return to sender. Address unknown.</main>;
-  }
+}

@@ -5,12 +5,6 @@ export function Make_Flashcards() {
     <div className = "body">
         <main className='main_box_editor'>
             {/* Will eventually source a translation service to help users fill out the back sides of their flashcards */}
-            <form action="flashcards" method="get">
-                <textarea className = "textbox" id="setname" name="setname" placeholder="Name your set"></textarea>
-                <br></br>
-            </form>
-            <hr />
-
             <div className = "flashcard_editor">
                 
 
