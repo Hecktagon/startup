@@ -4,6 +4,9 @@ export function Flashcards() {
   return (
     <div className = "body">
       <main className='main_box'>
+
+        <a href="make_flashcards"><button className="simple_button">Edit Flashcards</button></a>
+
         <div className = "flashcard_button_box">
           <button className = "arrow_button">&lt;</button>
 
