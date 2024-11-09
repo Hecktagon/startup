@@ -307,3 +307,497 @@ This meta tag should be included in the head element if your website uses CCS di
 `grid` a value of display that allows us to display elements in a grid shape that reshapes according to the size of the screen.  
 `flex` a value of display that allows you to partition elements into their own subsections that expand and contract to fit the screen.  
 
+
+# **Javascript**
+
+Javascript has similar syntax to C languages, using {} to delimit scopes, and conventinally ; to end statements. 
+
+## *Syntax:*  
+
+### Varibles & Types:  
+**Variables:**  
+`var variable_name` - This one is outdated, and should be avoided to avoid hard-to-debug errors. The problem with var, unlike const or let, is that it ignores block scope. Variables declared with var are always logically hoisted to the top of the function.   
+`let variable_name` - a normal variable, can be changed.  
+`const const_name` - a varible that throws an error if you try to change it.   
+
+**Types:**  
+`Null` - variable that hasnt been asigned a value.  
+`Undefined` -	The type of a variable that has not been defined.  
+`Boolean` -	true or false.  
+`Number` -	A 64-bit signed number.  
+`BigInt` -	A number of arbitrary magnitude.  
+`String` - A textual sequence of characters.  
+`Symbol` -	A unique value.  
+
+**Object Types:**  
+`Object`	A collection of properties represented by name-value pairs. Values can be of any type.	`{a:3, b:'fish'}`  
+`Function`	An object that has the ability to be called.	`function a() {}`  
+`Date`	Calendar dates and times.	`new Date('1995-12-17')`  
+`Array`	An ordered sequence of any type.	`[3, 'fish']`  
+`Map`	A collection of key-value pairs that support efficient lookups.	`new Map()`  
+`JSON`	A lightweight data-interchange format used to share information across programs.	`{"a":3, "b":"fish"}`  
+
+### General Syntax:  
+
+Ternary Operator - `a === 1 ? console.log(1) : console.log('not 1');`  
+
+For Loop - 
+```
+for (let i = 0; i < 2; i++) {
+  console.log(i);
+}
+```  
+
+Do While - 
+```
+let i = 0;
+do {
+  console.log(i);
+  i++;
+} while (i < 2);
+// OUTPUT: 0 1
+```  
+
+while - 
+```
+let i = 0;
+while (i < 2) {
+  console.log(i);
+  i++;
+}
+// OUTPUT: 0 1
+```
+
+For In-
+The for in statement iterates over an object's property names.
+```
+const obj = { a: 1, b: 'fish' };
+for (const name in obj) {
+  console.log(name);
+}
+// OUTPUT: a
+// OUTPUT: b
+```
+
+For Of - 
+The for of statement iterates over an iterable's (Array, Map, Set, ...) property values.
+```
+const arr = ['a', 'b'];
+for (const val of arr) {
+  console.log(val);
+}
+// OUTPUT: 'a'
+// OUTPUT: 'b'
+```  
+
+`break` - exits a loop  
+`continue` - goes to next iteration  
+
+=> Function -
+```
+const a = [1, 2, 3, 4];
+
+// standard function syntax
+a.sort(function (v1, v2) {
+  return v1 - v2;
+});
+
+// arrow function syntax
+a.sort((v1, v2) => v1 - v2);
+```
+
+=> functions can also use {} to change functionality - 
+```
+() => 3;
+// RETURNS: 3
+
+() => {
+  3;
+};
+// RETURNS: undefined
+
+() => {
+  return 3;
+};
+// RETURNS: 3
+```
+
+
+### String:  
+strings are indicated using `''` `""` or backticks. backticks indicate a string literal that may contain JavaScript that is evaluated in place and concatenated into the string. A string literal replacement specifier is declared with a dollar sign followed by a curly brace pair. Anything inside the curly braces is evaluated as JavaScript. You can also use backticks to create multiline strings without having to explicitly escape the newline characters using \n.  
+```
+'quoted text'; // " also works
+
+const l = 'literal';
+console.log(`string ${l + (1 + 1)} text`);
+// OUTPUT: string literal2 text
+```
+**String Functions:**  
+`length`	The number of characters in the string  
+`indexOf()`	The starting index of a given substring  
+`split()`	Split the string into an array on the given delimiter string  
+`startsWith()`	True if the string has a given prefix  
+`endsWith()`	True if the string has a given suffix  
+`toLowerCase()`	Converts all characters to lowercase  
+```
+const s = 'Example:조선글';
+
+console.log(s.length);
+// OUTPUT: 11
+console.log(s.indexOf('조선글'));
+// OUTPUT: 8
+console.log(s.split(':'));
+// OUTPUT: ['Example', '조선글']
+console.log(s.startsWith('Ex'));
+// OUTPUT: true
+console.log(s.endsWith('조선글'));
+// OUTPUT: true
+console.log(s.toLowerCase());
+// OUTPUT: example:조선글
+```
+
+### Arrays:  
+**Array functions:**  
+`push`	Add an item to the end of the array	`a.push(4)`  
+`pop`	Remove an item from the end of the array	`x = a.pop()`  
+`slice`	Return a sub-array	`a.slice(1,-1)`  
+`sort`	Run a function to sort an array in place	`a.sort((a,b) => b-a)`  
+`values`	Creates an iterator for use with a for of loop	`for (i of a.values()) {...}`  
+`find`	Find the first item satisfied by a test function	`a.find(i => i < 2)`  
+`forEach`	Run a function on each array item	`a.forEach(console.log)`  
+`reduce`	Run a function to reduce each array item to a single item	`a.reduce((a, c) => a + c)`  
+`map`	Run a function to map an array to a new array	`a.map(i => i+i)`  
+`filter`	Run a function to remove items	`a.filter(i => i%2)`  
+`every`	Run a function to test if all items match	`a.every(i => i < 3)`  
+`some`	Run a function to test if any items match	`a.some(i => i < 1)`  
+
+
+## *Built in Javascript Functions:*
+`console.log(message)` - outputs a message to console. placeholders can be used in the message to allow for the insertion of variables into the message, %s for strings:  
+%d or %i for integers  
+%f for floating-point numbers  
+%o or %O for objects  
+%c for CSS styling on the output  
+
+`console.time('timerlabel')` and `console.timeEnd('timerlabel')` - time starts a timer and outputs the time elapsed when timeEnd is called with the same label. can be used to see how long a piece of code is taking to run.  
+
+`console.count('counterlabel')` outputs the number of times a count function with that label has been run, useful for checking to see how often a block of code runs.  
+
+
+## Using Javascript in HTML:  
+
+Javascript, similarly to CSS, can be accesed in the HTML by importing a javascript page in the HTML file, or by directly inserting it within a <script> tag.   
+
+### Useful tag attributes for Javascript:  
+`onclick = "functionName()"` allows for a call to any linked javascript function when the tag is clicked.  
+
+## JSON:  
+Most commonly, a JSON document contains an object. Objects contain zero or more key value pairs. The key is always a string, and the value must be one of the valid JSON data types. Key value pairs are delimited with commas. Curly braces delimit an object, square brackets and commas delimit arrays, and strings are always delimited with double quotes.  
+
+Here is an example of a JSON document.  
+```
+{
+  "class": {
+    "title": "web programming",
+    "description": "Amazing"
+  },
+  "enrollment": ["Marco", "Jana", "فَاطِمَة"],
+  "start": "2025-02-01",
+  "end": null
+}
+```  
+
+You can convert JSON to, and from, JavaScript using the JSON.parse and JSON.stringify functions.  
+```
+const obj = { a: 2, b: 'crockford', c: undefined };
+const json = JSON.stringify(obj);
+const objFromJson = JSON.parse(json);
+
+console.log(obj, json, objFromJson);
+
+// OUTPUT:
+// {a: 2, b: 'crockford', c: undefined}
+// {"a":2, "b":"crockford"}
+// {a: 2, b: 'crockford'}
+```
+
+## Objects and Classes:  
+Objects can be created with the new operator. This causes the object's constructor to be called. Once declared you can add properties to the object by simply referencing the property name in an assignment. Any type of variable can be assigned to a property. This includes a sub-object, array, or function. The properties of an object can be referenced either with dot (obj.prop) or bracket notation (obj['prop']).  
+```
+const obj = new Object({ a: 3 });
+obj['b'] = 'fish';
+obj.c = [1, 2, 3];
+obj.hello = function () {
+  console.log('hello');
+};
+
+console.log(obj);
+// OUTPUT: {a: 3, b: 'fish', c: [1,2,3], hello: func}
+```  
+
+### Object built-in Functions:   
+`entries`	Returns an array of key value pairs  
+`keys`	Returns an array of keys  
+`values`	Returns an array of values  
+
+### Constructors:   
+A constructor is a function that returns an object. Objects have "this" pointers, ass seen below, that operate similarly to python "self".  
+```
+function Person(name) {
+  return {
+    name: name,
+    log: function () {
+      console.log('My name is ' + this.name);
+    },
+  };
+}
+
+const p = new Person('Eich');
+p.log();
+// OUTPUT: My name is Eich
+```
+
+### Classes:  
+You can use classes to define objects. Using a class clarifies the intent to create a reusable component rather than a one-off object. Class declarations look similar to declaring an object, but classes have an explicit constructor and assumed function declarations. The person object from above would look like the following when converted to a class.  
+```
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+
+  log() {
+    console.log('My name is ' + this.name);
+  }
+}
+
+const p = new Person('Eich');
+p.log();
+// OUTPUT: My name is Eich
+```  
+You can make properties and functions of classes private by prefixing them with a #.  
+```
+class Person {
+  #name;
+
+  constructor(name) {
+    this.#name = name;
+  }
+}
+
+const p = new Person('Eich');
+p.#name = 'Lie';
+// OUTPUT: Uncaught SyntaxError: Private field '#name' must be declared in an enclosing class
+```   
+
+Classes can be extended by using the extends keyword to define inheritance. Parameters that need to be passed to the parent class are delivered using the super function. Any functions defined on the child that have the same name as the parent override the parent's implementation. A parent's function can be explicitly accessed using the super keyword.  
+```
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+
+  print() {
+    return 'My name is ' + this.name;
+  }
+}
+
+class Employee extends Person {
+  constructor(name, position) {
+    super(name);
+    this.position = position;
+  }
+
+  print() {
+    return super.print() + '. I am a ' + this.position;
+  }
+}
+
+const e = new Employee('Eich', 'programmer');
+console.log(e.print());
+// OUTPUT: My name is Eich. I am a programmer
+```
+
+## RegEx:  
+You can create a regular expression using the class constructor or a regular expression literal.  
+```
+const objRegex = new RegExp('ab*', 'i');
+const literalRegex = /ab*/i;
+```  
+The string class has several functions that accept regular expressions. This includes match, replace, search, and split. For a quick test to see if there is a match you can use the regular expression object's test function.
+```  
+const petRegex = /(dog)|(cat)|(bird)/gim;
+const text = 'Both cats and dogs are pets, but not rocks.';
+
+text.match(petRegex);
+// RETURNS: ['cat', 'dog']
+
+text.replace(petRegex, 'animal');
+// RETURNS: Both animals and animals are pets, but not rocks.
+
+petRegex.test(text);
+// RETURNS: true
+```
+
+## Rest & Spread:
+Sometimes you want a function to take an unknown number of parameters. JavaScript provides the rest syntax to make this easier. To turn the last parameter of any function into a rest parameter you prefix it with three periods. You can then call it with any number of parameters and they are all automatically combined into an array.
+```
+function hasNumber(test, ...numbers) {
+  return numbers.some((i) => i === test);
+}
+
+hasNumber(2, 1, 2, 3);
+// RETURNS: true
+```  
+Note that you can only make the last parameter a rest parameter. Otherwise JavaScript would not know which parameters to combine into the array.  
+
+Spread does the opposite of rest. It take an object that is iterable (e.g. array or string) and expands it into a function's parameters.
+```
+function person(firstName, lastName) {
+  return { first: firstName, last: lastName };
+}
+
+const p = person(...['Ryan', 'Dahl']);
+console.log(p);
+// OUTPUT: {first: 'Ryan', last: 'Dahl'}
+```
+
+## Exceptions & Error Handling:  
+JS has try, catch, and throw capabilities, which match up pretty well with pythons try, except, and raise. On top of a catch, you can add an additionally, which will run whether or not an error is caught.   
+```
+try {
+  // normal execution code
+} catch (err) {
+  // exception handling code
+} finally {
+  // always called code
+}
+```
+
+## Destructuring:  
+Destructuring, not to be confused with destructing, is the process of pulling individual items out of an existing one, or removing structure. You can do this with either arrays or objects. This is helpful when you only care about a few items in the original structure.  
+
+An example of destructuring arrays looks like the following.  
+```
+const a = [1, 2, 4, 5];
+
+// destructure the first two items from a, into the new variables b and c
+const [b, c] = a;
+
+console.log(b, c);
+// OUTPUT: 1, 2
+```
+Note that even though it looks like you are declaring an array with the syntax on the left side of the expression, it is only specifying that you want to destructure those values out of the array.  
+
+You can also combine multiple items from the original object using rest syntax.  
+```
+const [b, c, ...others] = a;
+
+console.log(b, c, others);
+// OUTPUT: 1, 2, [4,5]
+```
+
+## "This":  
+The keyword this represents a variable that points to an object that contains the context within the scope of the currently executing line of code. The this variable is automatically declared and you can reference this anywhere in a JavaScript program. Because the value of this depends upon the context in which it is referenced, there are three different contexts to which this can refer:
+
+Global - When this is referenced outside a function or object it refers to the globalThis object. The globalThis object represents the context for runtime environment. For example, when running in a browser, globalThis refers to the browser's window object.
+Function - When this is referenced in a function it refers to the object that owns the function. That is either an object you defined or globalThis if the function is defined outside of an object. Note that when running in JavaScript strict mode, a global function's this variable is undefined instead of globalThis.
+Object - When this is referenced in an object it refers to the object.  
+
+## DOM:  
+The Document Object Model (DOM) is an object representation of the HTML elements that the browser uses to render the display. The browser also exposes the DOM to external code so that you can write programs that dynamically manipulate the HTML.  
+Every element in an HTML document implements the DOM Element interface, which is derived from the DOM Node interface. The DOM Element Interface provides the means for iterating child elements, accessing the parent element, and manipulating the element's attributes. From your JavaScript code, you can start with the document variable and walk through every element in the tree.  
+
+You can provide a CSS selector to the querySelectorAll function in order to select elements from the document. The textContent property contains all of the element's text. You can even access a textual representation of an element's HTML content with the innerHTML property.
+```
+const listElements = document.querySelectorAll('p');
+for (const el of listElements) {
+  console.log(el.textContent);
+}
+```
+
+The DOM supports the ability to insert, modify, or delete the elements in the DOM. To create a new element you first create the element on the DOM document. You then insert the new element into the DOM tree by appending it to an existing element in the tree.  
+```
+function insertChild(parentSelector, text) {
+  const newChild = document.createElement('div');
+  newChild.textContent = text;
+
+  const parentElement = document.querySelector(parentSelector);
+  parentElement.appendChild(newChild);
+}
+
+insertChild('#courses', 'new course');
+```  
+To delete elements call the removeChild function on the parent element.
+```
+function deleteElement(elementSelector) {
+  const el = document.querySelector(elementSelector);
+  el.parentElement.removeChild(el);
+}
+
+deleteElement('#courses div');
+```  
+The DOM also allows you to inject entire blocks of HTML into an element. The following code finds the first div element in the DOM and replaces all the HTML it contains.
+```
+const el = document.querySelector('div');
+el.innerHTML = '<div class="injected"><b>Hello</b>!</div>';
+```  
+However, directly injecting HTML as a block of text is a common attack vector for hackers.  
+
+### Listeners:  
+All DOM elements support the ability to attach a function that gets called when an event occurs on the element. These functions are called event listeners. Here is an example of an event listener that gets called when an element gets clicked.
+```
+const submitDataEl = document.querySelector('#submitData');
+submitDataEl.addEventListener('click', function (event) {
+  console.log(event.type);
+});
+```
+There are lots of possible events that you can add a listener to. This includes things like mouse, keyboard, scrolling, animation, video, audio, WebSocket, and clipboard events. You can see the full list on MDN. Here are a few of the more commonly used events.  
+
+`Clipboard`	Cut, copied, pasted  
+`Focus`	An element gets focus  
+`Keyboard`	Keys are pressed  
+`Mouse`	Click events  
+`Text selection`	When text is selected  
+
+## Local Storage:  
+The browser's localStorage API provides the ability to persistently store and retrieve data (i.e. scores, usernames, etc.,) on a user's browser across user sessions and HTML page renderings. For example, your frontend JavaScript code could store a user's name on one HTML page, and then retrieve the name later when a different HTML page is loaded.  
+
+Functions for local storage:  
+`setItem(name, value)`	Sets a named item's value into local storage  
+`getItem(name)`	Gets a named item's value from local storage  
+`removeItem(name)`	Removes a named item from local storage  
+`clear()`	Clears all items in local storage  
+
+A local storage value must be of type string, number, or boolean. If you want to store a JavaScript object or array, then you must first convert it to a JSON string with JSON.stringify() on insertion, and parse it back to JavaScript with JSON.parse() when retrieved.  
+
+## Promises:  
+The rendering process of your HTML executes on a single thread. That means that you cannot take a long time processing JavaScript on the main rendering thread. Long running, or blocking tasks, should be executed with the use of a JavaScript Promise. The execution of a promise allows the main rendering thread to continue while some action is executed in the background. You create a promise by calling the Promise object constructor and passing it an executor function that runs the asynchronous operation. Executing asynchronously means that promise constructor may return before the promise executor function runs. The state of the promise execution is always in one of three possible states.  
+
+pending - Currently running asynchronously  
+fulfilled - Completed successfully  
+rejected - Failed to complete  
+
+We need to be able to set the state to fulfilled when things complete correctly, or to rejected when an error happens. The promise executor function takes two functions as parameters, resolve and reject. Calling resolve sets the promise to the fulfilled state, and calling reject sets the promise to the rejected state.  
+
+
+## Using Node:  
+Create your project directory  
+Initialize it for use with NPM by running `npm init -y`  
+Make sure `.gitignore` file contains `node_modules`  
+Install any desired packages with `npm install <package name here>`  
+Add `require('<package name here>')` to your application's JavaScript  
+Use the code the package provides in your JavaScript  
+Run your code with `node index.js`  
+
+
+# **Vite**  
+
+Vite is a way to bundle all your website code into easily accessible compartments, and provides other handy actions as well, such as converting code over to react.  
+
+here is how to setup a Vite environment:  
+```
+npm create vite@latest demoVite -- --template react
+cd demoVite
+npm install
+npm run dev
+```  
