@@ -10,8 +10,9 @@ export function Make_Flashcards() {
 
                 <div className = "make_flashcards">
 
+                    <div><button className = "delete_button" id = "delete_set">X</button></div>
+
                     <form className = "csv_input_box" action="flashcards" method="get">
-                        <label for="csvInput">Paste your CSV data here:</label>
                         <textarea  className = "textbox" id="csvInput" name="csvInput" placeholder="Paste CSV data here..."></textarea>
                         <button type="submit"  className = "simple_button">Submit</button>
                     </form>

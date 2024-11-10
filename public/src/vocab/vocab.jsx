@@ -46,6 +46,12 @@ export function Vocab() {
     setShowInputs(true);
   };
 
+  const handleCloseInputs = () => {
+    setShowInputs(false);
+    setNewImage(null);
+    setNewTitle('');
+  };
+
   return (
     <div className="body">
       <main className="vocab_box">
@@ -67,7 +73,10 @@ export function Vocab() {
         </figure>
         {showInputs && (
           <div className="input-container">
-            <input className="file_title" type="file" accept="image/*" onChange={handleImageChange} />
+            <div id = "add_vocab_toprow">
+              <button className="delete_button" id = "cancel_vocab" onClick={handleCloseInputs}>X</button>
+              <input className="file_title" type="file" accept="image/*" onChange={handleImageChange} />
+            </div>
             <input
               type="text"
               placeholder="Enter title"
@@ -83,6 +92,7 @@ export function Vocab() {
     </div>
   );
 }
+
 
 
 // export function Vocab() {

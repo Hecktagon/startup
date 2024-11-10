@@ -92,6 +92,11 @@ fieldset{
     justify-self: center;
 }
 
+.input-container > *{
+    margin-bottom: 1vh;
+    margin-top: 1vh;
+}
+
 .simple_button{
     padding:0.3vw;
     border-color: #ccc;
@@ -109,7 +114,9 @@ fieldset{
     border-width: 1px;
 }
 
-
+#add_vocab_toprow{
+    display: flex;
+}
 
 .delete_button{
     padding:0.3vw;
@@ -118,6 +125,14 @@ fieldset{
     border-style: solid;
     border-radius: 5px;
     border-width: 1px;
+    margin-right: 1vh;
+    width:30px;
+    background-color: rgb(255, 210, 210);    
+}
+
+#delete_set{
+    width: 25vw;
+    
 }
 
 hr{
@@ -604,6 +619,11 @@ header {
         justify-content: center;
         width: 90%;
         height: 100%;
+    }
+
+    .make_flashcards > * {
+        margin-top: 0.05vh;
+        margin-bottom: 0.05vh;
     }
 
     .made_flashcard{
