@@ -18,8 +18,8 @@ export function Login() {
               <input className = "simple_input" type="password" placeholder="password" />
           </div>
           <div>
-              <button type="submit">Login</button>
-              <button type="submit">Create</button>
+              <button type="submit" className = "simple_button login_button" >Login</button>
+              <button type="submit" className = "simple_button login_button">Create</button>
           </div>
       </form>
       </main>
