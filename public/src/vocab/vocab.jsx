@@ -4,7 +4,7 @@ export function Vocab() {
   const [figures, setFigures] = useState(() => {
     const savedFigures = localStorage.getItem('figures');
     return savedFigures ? JSON.parse(savedFigures) : [
-      { src: 'spain_flag.png', caption: 'Spanish Flashcards' }
+      {id: "1", src: 'spain_flag.png', caption: 'Spanish Flashcards' }
     ];
   });
   const [newImage, setNewImage] = useState(null);
@@ -28,6 +28,11 @@ export function Vocab() {
 
   const handleTitleChange = (e) => {
     setNewTitle(e.target.value);
+  };
+
+  const handleButtonClick = (id) => {
+    localStorage.setItem('currentFolderId', id);
+    window.location.href = 'flashcards';
   };
 
   const addFigure = () => {
@@ -58,7 +63,7 @@ export function Vocab() {
         {figures.map((figure, index) => (
           <figure key={index} className="button-figure">
             <a href="flashcards">
-              <button className="vocab_button">
+              <button className="vocab_button" onClick={() => handleButtonClick(figure.id)}>
                 <img className="vocab_img" src={figure.src} alt="Button Image" />
               </button>
             </a>

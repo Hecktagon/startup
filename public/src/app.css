@@ -83,6 +83,17 @@ fieldset{
     color:#333;
 }
 
+.input_div{
+    color: black;
+    display: flex;
+    flex-direction: column;
+}
+
+.slider_and_output > *{
+ margin-left: 1vw;
+ margin-right: 1vw;
+}
+
 .input-container{
     margin-left: 2vw;
     width: 60vw;
@@ -131,7 +142,9 @@ fieldset{
 }
 
 #delete_set{
-    width: 25vw;
+    color:rgb(113, 113, 113);
+    font-family: 'Helvetica Neue',;
+    width: 20vw;
     
 }
 
@@ -141,6 +154,17 @@ hr{
     border: none; 
     width: 75%;
     margin: 3vh; 
+}
+#csv_sep{
+    color: black;
+    background-color: rgb(0, 0, 0); 
+}
+
+.or_sep{
+    white-space: nowrap;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: black;
 }
 
 header {
@@ -253,8 +277,8 @@ header {
 }
 
 .make_flashcards > * {
-    margin-top: 4vh;
-    margin-bottom: 4vh;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
 }
 
 .csv_input_box{
@@ -544,6 +568,14 @@ header {
         width:50vw;
     }
 
+    #delete_set{
+        color:rgb(113, 113, 113);
+        font-family: 'Helvetica Neue',;
+        width: 40vw;
+        margin-bottom: 2vh;
+        
+    }
+    
 
     .github_linkbox {
         grid-column: 3;

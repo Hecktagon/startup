@@ -1,6 +1,18 @@
 import React from 'react';
 
 export function Flashcards() {
+  const [flashcards, setFlashcards] = useState([]);
+  const folderId = localStorage.getItem('currentFolderId');
+
+  useEffect(() => {
+    // Load flashcards based on folderId
+    const savedFlashcards = localStorage.getItem(`flashcards_${folderId}`);
+    if (savedFlashcards) {
+      setFlashcards(JSON.parse(savedFlashcards));
+    } 
+  }, [folderId]);
+
+
   return (
     <div className = "body">
       <main className='main_box'>
