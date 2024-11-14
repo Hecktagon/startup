@@ -3,7 +3,12 @@ import React, { useState } from 'react';
 export function Make_Flashcards() {
     const folderId = localStorage.getItem('currentFolderId');
     const [sliderValue, setSliderValue] = useState(50);
-
+    const [figures, setFigures] = useState(() => {
+      const savedFigures = localStorage.getItem('figures');
+      return savedFigures ? JSON.parse(savedFigures) : [
+        {id: "1", src: 'spain_flag.png', caption: 'Spanish Flashcards', csvData: null}
+      ];
+    });
     const handleSliderChange = (event) => {
         setSliderValue(event.target.value);
     };
@@ -22,6 +27,26 @@ export function Make_Flashcards() {
         console.log("Deletion cancelled");
         }
   };
+
+
+  function updateCSV(csv) {
+    // Parse the CSV string into an array of objects
+    const newCSVData = csv.split('\n').map(row => row.split(','));
+
+    // Update the figures state
+    setFigures(prevFigures => {
+        return prevFigures.map(figure => {
+            if (figure.id === folderId) {
+                return {
+                    ...figure,
+                    csvData: figure.csvData ? [...figure.csvData, ...newCSVData] : newCSVData
+                };
+            }
+            return figure;
+        });
+    });
+}
+  
 
   return (
     <div className="body">
