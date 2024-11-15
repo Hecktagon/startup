@@ -1,6 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 
 export function Make_Flashcards() {
+    const [flashData, setFlashData] = useState(null)
+
+    const handleCSVChange = (e) => {
+      setFlashData(e.target.value);
+    };
+
     const folderId = localStorage.getItem('currentFolderId');
     const [sliderValue, setSliderValue] = useState(50);
     const [figures, setFigures] = useState(() => {
@@ -9,6 +15,11 @@ export function Make_Flashcards() {
         {id: "1", src: 'spain_flag.png', caption: 'Spanish Flashcards', csvData: null}
       ];
     });
+
+    useEffect(() => {
+      localStorage.setItem('figures', JSON.stringify(figures));
+    }, [figures]);
+
     const handleSliderChange = (event) => {
         setSliderValue(event.target.value);
     };
@@ -18,8 +29,25 @@ export function Make_Flashcards() {
         if (userConfirmed) {
             const userDoubleConfirmed = window.confirm("Are you SURE you're sure?");
         if(userDoubleConfirmed){
-            // Add your deletion logic here
+          setFigures(prevFigures => {
+            return prevFigures.map(figure => {
+                if (figure.id === folderId) {
+                    // Return null to remove later with .filter
+                    return null;
+                } else if (figure.id > folderId) {
+                    // Subtract 1 from ids greater than folderId
+                    return {
+                        ...figure,
+                        id: figure.id - 1
+                    };
+                }
+                // Return the figure unchanged if id is not greater than folderId
+                return figure;
+            }).filter(figure => figure !== null); // Remove null values
+        });
+      
             console.log("Set deleted");
+            window.location.href = '/vocab';
         } else{
             console.log("Deletion cancelled");
         }
@@ -29,9 +57,9 @@ export function Make_Flashcards() {
   };
 
 
-  function updateCSV(csv) {
+  const updateCSV = () =>{
     // Parse the CSV string into an array of objects
-    const newCSVData = csv.split('\n').map(row => row.split(','));
+    const newCSVData = flashData.split('\n').map(row => row.split(','));
 
     // Update the figures state
     setFigures(prevFigures => {
@@ -61,8 +89,8 @@ export function Make_Flashcards() {
             </div>
 
             <form className="csv_input_box" action="flashcards" method="get">
-              <textarea className="textbox" id="csvInput" name="csvInput" placeholder="Paste CSV data here..."></textarea>
-              <button type="submit" className="simple_button">Submit</button>
+              <textarea className="textbox" id="csvInput" name="csvInput" onChange = {handleCSVChange} placeholder="Paste CSV data here..."></textarea>
+              <button type="submit" onClick = {updateCSV} className="simple_button">Submit</button>
             </form>
 
             {/* <hr id = "csv_sep"></hr> */}
