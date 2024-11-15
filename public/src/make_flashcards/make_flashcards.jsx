@@ -1,23 +1,28 @@
-import React, { useState, useEffect} from 'react';
+
+import React, { useState, useEffect } from 'react';
+
 
 export function Make_Flashcards() {
-    const [flashData, setFlashData] = useState(null)
-
-    const handleCSVChange = (e) => {
-      setFlashData(e.target.value);
-    };
-
-    const folderId = localStorage.getItem('currentFolderId');
-    const [sliderValue, setSliderValue] = useState(50);
     const [figures, setFigures] = useState(() => {
       const savedFigures = localStorage.getItem('figures');
       return savedFigures ? JSON.parse(savedFigures) : [
         {id: "1", src: 'spain_flag.png', caption: 'Spanish Flashcards', csvData: null}
       ];
     });
+    const folderId = localStorage.getItem('currentFolderId');
+    const currentFigure = figures.find(figure => figure.id === folderId);
+    const [flashData, setFlashData] = useState(null)
+    const handleCSVChange = (e) => {
+      setFlashData(e.target.value);
+    };
+    const total_flashcards = currentFigure.csvData.length
+    const [sliderValue, setSliderValue] = useState(total_flashcards);
+  
+    
 
     useEffect(() => {
       localStorage.setItem('figures', JSON.stringify(figures));
+      setSliderValue(total_flashcards + 1)
     }, [figures]);
 
     const handleSliderChange = (event) => {
@@ -63,6 +68,7 @@ export function Make_Flashcards() {
 
     // Update the figures state
     setFigures(prevFigures => {
+        setFlashData(null)
         return prevFigures.map(figure => {
             if (figure.id === folderId) {
                 return {
@@ -75,6 +81,20 @@ export function Make_Flashcards() {
     });
 }
   
+const handleDeleteFlashcard = (index) => {
+  setFigures(prevFigures => {
+      return prevFigures.map(figure => {
+          if (figure.id === folderId) {
+              const newCSVData = figure.csvData.filter((_, i) => i !== index);
+              return {
+                  ...figure,
+                  csvData: newCSVData
+              };
+          }
+          return figure;
+      });
+  });
+};
 
   return (
     <div className="body">
@@ -90,7 +110,7 @@ export function Make_Flashcards() {
 
             <form className="csv_input_box" action="flashcards" method="get">
               <textarea className="textbox" id="csvInput" name="csvInput" onChange = {handleCSVChange} placeholder="Paste CSV data here..."></textarea>
-              <button type="submit" onClick = {updateCSV} className="simple_button">Submit</button>
+              <button type="button" onClick = {updateCSV} className="simple_button">Submit</button>
             </form>
 
             {/* <hr id = "csv_sep"></hr> */}
@@ -112,7 +132,7 @@ export function Make_Flashcards() {
                             id="slider"
                             name="slider"
                             min="1"
-                            max="100"
+                            max={total_flashcards + 1}
                             value={sliderValue}
                             onChange={handleSliderChange}
                         />
@@ -129,41 +149,19 @@ export function Make_Flashcards() {
           <div className="separator" id="editor_split"></div>
 
           <div className="flashcard_display">
-            <div className="made_flashcard">
-              <p className="frontword">To speak</p> <p>|</p> <p className="backword">Hablar</p>
-              <button className="delete_button">X</button>
-            </div>
-            <div className="made_flashcard">
-              <p className="frontword">I</p> <p>|</p> <p className="backword">Yo</p>
-              <button className="delete_button">X</button>
-            </div>
-            <div className="made_flashcard">
-              <p className="frontword">You</p> <p>|</p> <p className="backword">Tu</p>
-              <button className="delete_button">X</button>
-            </div>
-            <div className="made_flashcard">
-              <p className="frontword">He</p> <p>|</p> <p className="backword">El</p>
-              <button className="delete_button">X</button>
-            </div>
-            <div className="made_flashcard">
-              <p className="frontword">She</p> <p>|</p> <p className="backword">Ella</p>
-              <button className="delete_button">X</button>
-            </div>
-            <div className="made_flashcard">
-              <p className="frontword">We</p> <p>|</p> <p className="backword">Nosotros</p>
-              <button className="delete_button">X</button>
-            </div>
-            <div className="made_flashcard">
-              <p className="frontword">They</p> <p>|</p> <p className="backword">Ellos</p>
-              <button className="delete_button">X</button>
-            </div>
-            <div className="made_flashcard">
-              <p className="frontword">Spanish</p> <p>|</p> <p className="backword">Espanol</p>
-              <button className="delete_button">X</button>
-            </div>
+              {currentFigure && currentFigure.csvData && currentFigure.csvData.map((row, index) => (
+                <div key={index} className="made_flashcard">
+                  <div className="front">{row[0]}</div>
+                  <p>|</p>
+                  <div className="back">{row[1]}</div>
+                  <button className="delete_button" onClick={() => handleDeleteFlashcard(index)}>X</button>
+                </div>
+              ))}
+            
           </div>
         </div>
       </main>
     </div>
   );
 }
+
