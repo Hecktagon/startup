@@ -45,6 +45,11 @@ a {
     color: white;
 }
 
+.flash_img {
+    color: black;
+    margin-left: 2vw;
+}
+
 .user_profile_pic{
     width:36px; 
     height:36px; 

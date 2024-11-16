@@ -17,9 +17,41 @@ export function Make_Flashcards() {
     };
     const total_flashcards = currentFigure.csvData.length
     const [sliderValue, setSliderValue] = useState(total_flashcards);
-  
-    
 
+    const [newFront, setNewFront] = useState('');
+    const [newBack, setNewBack] = useState('');
+    const [newImageBack, setNewImageBack] = useState(null);
+    const [newImageFront, setNewImageFront] = useState(null);
+
+    const handleFrontChange = (e) => {
+      setNewFront(e.target.value);
+    };
+
+    const handleImageChangeFront = (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setNewImageFront(reader.result);
+        };
+        reader.readAsDataURL(file);
+      }
+    };
+
+    const handleBackChange = (e) => {
+      setNewBack(e.target.value);
+    };
+
+    const handleImageChangeBack = (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setNewImageBack(reader.result);
+        };
+        reader.readAsDataURL(file);
+      }
+    };
     useEffect(() => {
       localStorage.setItem('figures', JSON.stringify(figures));
       setSliderValue(total_flashcards + 1)
@@ -28,6 +60,9 @@ export function Make_Flashcards() {
     const handleSliderChange = (event) => {
         setSliderValue(event.target.value);
     };
+
+    
+
 
     const handleDeleteSet = () => {
         const userConfirmed = window.confirm("Are you sure you would like to delete this set?");
@@ -80,7 +115,20 @@ export function Make_Flashcards() {
         });
     });
 }
-  
+
+  const handleAddFlashcard = () => {
+      if ((newFront || newImageFront) && (newBack || newImageBack)) {
+        const newFlashcard = `${newFront ? newFront : newImageFront}, ${newBack ? newBack : newImageBack}, ${sliderValue}, 0, null`;
+        setFlashData(newFlashcard);
+        updateCSV();
+        setFlashData(null);
+        setNewFront('');
+        setNewBack('');
+        setNewImageFront(null);
+        setNewImageBack(null);
+      }
+    }
+
 const handleDeleteFlashcard = (index) => {
   setFigures(prevFigures => {
       return prevFigures.map(figure => {
@@ -117,11 +165,13 @@ const handleDeleteFlashcard = (index) => {
             <p className = "or_sep">───── OR ─────</p>
 
             <form className="side_flaschard" action="flashcards" method="get">
-              <textarea className="textbox" id="front_word" name="front_word" placeholder="Front of card"></textarea>
+              <textarea className="textbox" id="front_word" name="front_word" placeholder="Front of card" onChange={handleFrontChange}></textarea>
+              <input className="flash_img" type="file" accept="image/*,video/*" onChange={handleImageChangeFront} />
             </form>
 
             <form className="side_flaschard" action="flashcards" method="get">
-              <textarea className="textbox" id="back_word" name="back_word" placeholder="Back of card"></textarea>
+              <textarea className="textbox" id="back_word" name="back_word" placeholder="Back of card" onChange={handleBackChange}></textarea>
+              <input className="flash_img" type="file" accept="image/*,video/*" onChange={handleImageChangeBack} />
             </form>
 
             <div className="input_div">
@@ -141,7 +191,7 @@ const handleDeleteFlashcard = (index) => {
             </div>
 
             {/* will eventually add another set of inputs for a front and back word */}
-            <button id="add_flashcard_button" className="simple_button">
+            <button id="add_flashcard_button" className="simple_button" onClick={handleAddFlashcard}>
               Add Flashcard
             </button>
           </div>
