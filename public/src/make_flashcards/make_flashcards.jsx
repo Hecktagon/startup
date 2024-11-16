@@ -6,16 +6,16 @@ export function Make_Flashcards() {
     const [figures, setFigures] = useState(() => {
       const savedFigures = localStorage.getItem('figures');
       return savedFigures ? JSON.parse(savedFigures) : [
-        {id: "1", src: 'spain_flag.png', caption: 'Spanish Flashcards', csvData: null}
+        {id: "1", src: 'spain_flag.png', caption: 'Spanish Flashcards', csvData: []}
       ];
     });
     const folderId = localStorage.getItem('currentFolderId');
     const currentFigure = figures.find(figure => figure.id === folderId);
-    const [flashData, setFlashData] = useState(null)
+    const [flashData, setFlashData] = useState([])
     const handleCSVChange = (e) => {
       setFlashData(e.target.value);
     };
-    const total_flashcards = currentFigure.csvData.length
+    const total_flashcards = currentFigure ? currentFigure.csvData.length : 0;
     const [sliderValue, setSliderValue] = useState(total_flashcards);
 
     const [newFront, setNewFront] = useState('');
@@ -52,6 +52,7 @@ export function Make_Flashcards() {
         reader.readAsDataURL(file);
       }
     };
+
     useEffect(() => {
       localStorage.setItem('figures', JSON.stringify(figures));
       setSliderValue(total_flashcards + 1)
@@ -60,9 +61,6 @@ export function Make_Flashcards() {
     const handleSliderChange = (event) => {
         setSliderValue(event.target.value);
     };
-
-    
-
 
     const handleDeleteSet = () => {
         const userConfirmed = window.confirm("Are you sure you would like to delete this set?");
@@ -97,13 +95,64 @@ export function Make_Flashcards() {
   };
 
 
+  const is2DArray = (array) => {
+    // Check if array is an array
+    if (!Array.isArray(array)) {
+      return false;
+    }
+  
+    // Check if each element in the array is also an array
+    for (let i = 0; i < array.length; i++) {
+      if (!Array.isArray(array[i])) {
+        return false;
+      }
+    }
+  
+    return true;
+  };
+
+  const parseCSVData = (data) => {
+    const base64Pattern = /data:(image|video)\/[a-zA-Z]+;base64,[a-zA-Z0-9+/=]+/g;
+    const rows = data.split('\n');
+  
+    return rows.map(row => {
+      const matches = row.match(base64Pattern);
+      if (matches) {
+        // Replace Base64 strings with placeholders
+        let placeholderIndex = 0;
+        const placeholders = matches.map(() => `__BASE64_${placeholderIndex++}__`);
+        let modifiedRow = row;
+        matches.forEach((match, index) => {
+          modifiedRow = modifiedRow.replace(match, placeholders[index]);
+        });
+  
+        // Split by commas
+        let columns = modifiedRow.split(',');
+  
+        // Replace placeholders with original Base64 strings
+        columns = columns.map(col => {
+          const placeholderMatch = col.match(/__BASE64_(\d+)__/);
+          if (placeholderMatch) {
+            return matches[placeholderMatch[1]];
+          }
+          return col;
+        });
+  
+        return columns;
+      } else {
+        // No Base64 strings, split normally
+        return row.split(',');
+      }
+    });
+  };
+
   const updateCSV = () =>{
     // Parse the CSV string into an array of objects
-    const newCSVData = flashData.split('\n').map(row => row.split(','));
+    const newCSVData = parseCSVData(flashData);
 
     // Update the figures state
     setFigures(prevFigures => {
-        setFlashData(null)
+        setFlashData([])
         return prevFigures.map(figure => {
             if (figure.id === folderId) {
                 return {
@@ -121,7 +170,7 @@ export function Make_Flashcards() {
         const newFlashcard = `${newFront ? newFront : newImageFront}, ${newBack ? newBack : newImageBack}, ${sliderValue}, 0, null`;
         setFlashData(newFlashcard);
         updateCSV();
-        setFlashData(null);
+        setFlashData([]);
         setNewFront('');
         setNewBack('');
         setNewImageFront(null);
