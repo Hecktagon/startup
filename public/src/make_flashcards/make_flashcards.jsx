@@ -6,16 +6,17 @@ export function Make_Flashcards() {
     const [figures, setFigures] = useState(() => {
       const savedFigures = localStorage.getItem('figures');
       return savedFigures ? JSON.parse(savedFigures) : [
-        {id: "1", src: 'spain_flag.png', caption: 'Spanish Flashcards', csvData: []}
+        {id: "1", src: 'spain_flag.png', caption: 'Spanish Flashcards', TSVData: []}
       ];
     });
+
     const folderId = localStorage.getItem('currentFolderId');
     const currentFigure = figures.find(figure => figure.id === folderId);
     const [flashData, setFlashData] = useState([])
-    const handleCSVChange = (e) => {
+    const handleTSVChange = (e) => {
       setFlashData(e.target.value);
     };
-    const total_flashcards = currentFigure ? currentFigure.csvData.length : 0;
+    const total_flashcards = currentFigure ? currentFigure.TSVData.length : 0;
     const [sliderValue, setSliderValue] = useState(total_flashcards);
 
     const [newFront, setNewFront] = useState('');
@@ -51,6 +52,10 @@ export function Make_Flashcards() {
         };
         reader.readAsDataURL(file);
       }
+    };
+
+    const isBase64ImageOrVideo = (str) => {
+      return /^data:image\/[a-zA-Z]+;base64,/.test(str) || /^data:video\/[a-zA-Z]+;base64,/.test(str);
     };
 
     useEffect(() => {
@@ -111,44 +116,12 @@ export function Make_Flashcards() {
     return true;
   };
 
-  const parseCSVData = (data) => {
-    const base64Pattern = /data:(image|video)\/[a-zA-Z]+;base64,[a-zA-Z0-9+/=]+/g;
-    const rows = data.split('\n');
-  
-    return rows.map(row => {
-      const matches = row.match(base64Pattern);
-      if (matches) {
-        // Replace Base64 strings with placeholders
-        let placeholderIndex = 0;
-        const placeholders = matches.map(() => `__BASE64_${placeholderIndex++}__`);
-        let modifiedRow = row;
-        matches.forEach((match, index) => {
-          modifiedRow = modifiedRow.replace(match, placeholders[index]);
-        });
-  
-        // Split by commas
-        let columns = modifiedRow.split(',');
-  
-        // Replace placeholders with original Base64 strings
-        columns = columns.map(col => {
-          const placeholderMatch = col.match(/__BASE64_(\d+)__/);
-          if (placeholderMatch) {
-            return matches[placeholderMatch[1]];
-          }
-          return col;
-        });
-  
-        return columns;
-      } else {
-        // No Base64 strings, split normally
-        return row.split(',');
-      }
-    });
-  };
 
-  const updateCSV = () =>{
-    // Parse the CSV string into an array of objects
-    const newCSVData = parseCSVData(flashData);
+
+  const updateTSV = () =>{
+    // Parse the TSV string into an array of objects
+    if(!flashData) {return};
+    const newTSVData = flashData.split('\n').map(row => row.split('\t').map(item => item.trim()));
 
     // Update the figures state
     setFigures(prevFigures => {
@@ -157,7 +130,7 @@ export function Make_Flashcards() {
             if (figure.id === folderId) {
                 return {
                     ...figure,
-                    csvData: figure.csvData ? [...figure.csvData, ...newCSVData] : newCSVData
+                    TSVData: figure.TSVData ? [...figure.TSVData, ...newTSVData] : newTSVData
                 };
             }
             return figure;
@@ -167,9 +140,9 @@ export function Make_Flashcards() {
 
   const handleAddFlashcard = () => {
       if ((newFront || newImageFront) && (newBack || newImageBack)) {
-        const newFlashcard = `${newFront ? newFront : newImageFront}, ${newBack ? newBack : newImageBack}, ${sliderValue}, 0, null`;
+        const newFlashcard = `${newFront ? newFront : newImageFront}\t${newBack ? newBack : newImageBack}\t${sliderValue}\t0\tnull`;
         setFlashData(newFlashcard);
-        updateCSV();
+        updateTSV();
         setFlashData([]);
         setNewFront('');
         setNewBack('');
@@ -182,10 +155,10 @@ const handleDeleteFlashcard = (index) => {
   setFigures(prevFigures => {
       return prevFigures.map(figure => {
           if (figure.id === folderId) {
-              const newCSVData = figure.csvData.filter((_, i) => i !== index);
+              const newTSVData = figure.TSVData.filter((_, i) => i !== index);
               return {
                   ...figure,
-                  csvData: newCSVData
+                  TSVData: newTSVData
               };
           }
           return figure;
@@ -205,12 +178,12 @@ const handleDeleteFlashcard = (index) => {
               </button>
             </div>
 
-            <form className="csv_input_box" action="flashcards" method="get">
-              <textarea className="textbox" id="csvInput" name="csvInput" onChange = {handleCSVChange} placeholder="Paste CSV data here..."></textarea>
-              <button type="button" onClick = {updateCSV} className="simple_button">Submit</button>
+            <form className="TSV_input_box" action="flashcards" method="get">
+              <textarea className="textbox" id="TSVInput" name="TSVInput" onChange = {handleTSVChange} placeholder="Paste TSV data here..."></textarea>
+              <button type="button" onClick = {updateTSV} className="simple_button">Submit</button>
             </form>
 
-            {/* <hr id = "csv_sep"></hr> */}
+            {/* <hr id = "TSV_sep"></hr> */}
             <p className = "or_sep">───── OR ─────</p>
 
             <form className="side_flaschard" action="flashcards" method="get">
@@ -248,12 +221,47 @@ const handleDeleteFlashcard = (index) => {
           <div className="separator" id="editor_split"></div>
 
           <div className="flashcard_display">
-              {currentFigure && currentFigure.csvData && currentFigure.csvData.map((row, index) => (
+              {/* {currentFigure && currentFigure.TSVData && currentFigure.TSVData.map((row, index) => (
                 <div key={index} className="made_flashcard">
                   <div className="front">{row[0]}</div>
                   <p>|</p>
                   <div className="back">{row[1]}</div>
                   <button className="delete_button" onClick={() => handleDeleteFlashcard(index)}>X</button>
+                </div>
+              ))} */}
+
+              {currentFigure && currentFigure.TSVData && currentFigure.TSVData.map((row, index) => (
+                <div key = {index} className = "made_flashcard">
+                  {isBase64ImageOrVideo(row[0]) ? (
+                    <div  className="front">
+                      {/^data:image\//.test(row[0]) ? (
+                        <img className="made_IMG" src={row[0]} alt={`Flashcard ${index} front`} />
+                      ) : (
+                        <video controls>
+                          <source className="made_IMG" src={row[0]} type="video/mp4" />
+                          Your browser does not support the video tag.
+                        </video>
+                      )}
+                    </div>
+                  ) : (
+                    <span>{row[0]}</span>
+                  )}
+                  |
+                  {isBase64ImageOrVideo(row[1]) ? (
+                    <div className = "back">
+                      {/^data:image\//.test(row[1]) ? (
+                        <img className="made_IMG" src={row[1]} alt={`Flashcard ${index} back`} />
+                      ) : (
+                        <video controls>
+                          <source className="made_IMG" src={row[1]} type="video/mp4" />
+                          Your browser does not support the video tag.
+                        </video>
+                      )}
+                    </div>
+                  ) : (
+                    <span>{row[1]}</span>
+                  )}
+                  <button className = "delete_button" onClick={() => handleDeleteFlashcard(index)}>X</button>
                 </div>
               ))}
             

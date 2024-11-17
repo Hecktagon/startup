@@ -4,7 +4,7 @@ export function Vocab() {
   const [figures, setFigures] = useState(() => {
     const savedFigures = localStorage.getItem('figures');
     return savedFigures ? JSON.parse(savedFigures) : [
-      {id: "1", src: 'spain_flag.png', caption: 'Spanish Flashcards', csvData: []}
+      {id: "1", src: 'spain_flag.png', caption: 'Spanish Flashcards', TSVData: []}
     ];
   });
   const [newImage, setNewImage] = useState(null);
@@ -37,7 +37,7 @@ export function Vocab() {
 
   const addFigure = () => {
     if (newImage && newTitle) {
-        const newFigure = {id: String(figures.length + 1), src: newImage, caption: newTitle, csvData: []};
+        const newFigure = {id: String(figures.length + 1), src: newImage, caption: newTitle, TSVData: []};
         const updatedFigures = [...figures, newFigure];
         
         // Update the state
