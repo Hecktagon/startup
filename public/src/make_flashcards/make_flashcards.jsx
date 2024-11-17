@@ -27,6 +27,10 @@ export function Make_Flashcards() {
     const handleFrontChange = (e) => {
       setNewFront(e.target.value);
     };
+    
+    function prioritySort(arr) {
+      return arr.sort((a, b) => a[2] - b[2]);
+    };
 
     const handleImageChangeFront = (e) => {
       const file = e.target.files[0];
@@ -100,43 +104,34 @@ export function Make_Flashcards() {
   };
 
 
-  const is2DArray = (array) => {
-    // Check if array is an array
-    if (!Array.isArray(array)) {
-      return false;
-    }
-  
-    // Check if each element in the array is also an array
-    for (let i = 0; i < array.length; i++) {
-      if (!Array.isArray(array[i])) {
-        return false;
-      }
-    }
-  
-    return true;
-  };
-
-
-
   const updateTSV = () =>{
     // Parse the TSV string into an array of objects
     if(!flashData) {return};
-    const newTSVData = flashData.split('\n').map(row => row.split('\t').map(item => item.trim()));
-
+    const initTSVData = flashData.split('\n').map(row => row.split('\t').map(item => item.trim()));
+    const newTSVData = initTSVData.map((subArray, index) => 
+        subArray.length <= 2 ? [...subArray, total_flashcards + index, 0, null] : subArray
+    );
     // Update the figures state
     setFigures(prevFigures => {
         setFlashData([])
         return prevFigures.map(figure => {
             if (figure.id === folderId) {
+                const combinedTSVData = figure.TSVData ? [...figure.TSVData, ...newTSVData] : newTSVData;
                 return {
                     ...figure,
-                    TSVData: figure.TSVData ? [...figure.TSVData, ...newTSVData] : newTSVData
+                    TSVData: prioritySort(combinedTSVData) // Sort the combined TSVData
                 };
             }
             return figure;
         });
     });
-}
+  }
+  
+  //   useEffect(() => {
+  //     if (flashData) {
+  //         updateTSV();
+  //     }
+  // }, [flashData]);
 
   const handleAddFlashcard = () => {
       if ((newFront || newImageFront) && (newBack || newImageBack)) {
@@ -150,6 +145,7 @@ export function Make_Flashcards() {
         setNewImageBack(null);
       }
     }
+
 
 const handleDeleteFlashcard = (index) => {
   setFigures(prevFigures => {
@@ -165,6 +161,33 @@ const handleDeleteFlashcard = (index) => {
       });
   });
 };
+
+
+// for preventing tab jumping
+useEffect(() => {
+  const textarea = document.getElementById('TSVInput');
+  const handleTabPress = (e) => {
+      if (e.key === 'Tab') {
+          e.preventDefault();
+          const start = textarea.selectionStart;
+          const end = textarea.selectionEnd;
+          const value = textarea.value;
+          textarea.value = value.substring(0, start) + '\t' + value.substring(end);
+          textarea.selectionStart = textarea.selectionEnd = start + 1;
+      }
+  };
+
+  if (textarea) {
+      textarea.addEventListener('keydown', handleTabPress);
+  }
+
+  return () => {
+      if (textarea) {
+          textarea.removeEventListener('keydown', handleTabPress);
+      }
+  };
+}, []);
+
 
   return (
     <div className="body">
@@ -204,7 +227,7 @@ const handleDeleteFlashcard = (index) => {
                             id="slider"
                             name="slider"
                             min="1"
-                            max={total_flashcards + 1}
+                            max={total_flashcards + 1 > 10 ? total_flashcards + 1 : 10}
                             value={sliderValue}
                             onChange={handleSliderChange}
                         />
