@@ -10,8 +10,34 @@ export function Flashcards() {
     ];
   });
   const currentFigure = figures.find(figure => figure.id === folderId);
-  const [defaultSide, setDefaultSide] = useState(true);
+  const [defaultSide, setDefaultSide] = useState(false);
   const [flashSide, setFlashSide] = useState(defaultSide);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const finishedSet = () => {
+    alert("Congratulations! You reached the end of the set!");
+  }
+
+  const handleNextFlashcard = () => {
+    if (currentFigure.TSVData.length > 1){
+      if (currentIndex === currentFigure.TSVData.length - 1) {
+        setCurrentIndex(0);
+        finishedSet();
+      } else {
+        setCurrentIndex(currentIndex + 1);
+      }
+      setFlashSide(defaultSide);
+    }};
+
+  const handlePrevious = () => {
+    if (currentFigure.TSVData.length > 1){
+      if (currentIndex === 0) {
+        setCurrentIndex(currentFigure.TSVData.length - 1);
+      } else {
+        setCurrentIndex(currentIndex - 1);
+      }
+      setFlashSide(defaultSide);
+  }};
 
   const isBase64ImageOrVideo = (str) => {
     return /^data:image\/[a-zA-Z]+;base64,/.test(str) || /^data:video\/[a-zA-Z]+;base64,/.test(str);
@@ -26,6 +52,18 @@ export function Flashcards() {
     }
   };
 
+  // const handleFlashcardFront = () => {
+  //   null
+  // }
+  // const handleFlashcardBack = () => {
+  //   null
+  // }
+
+  // useEffect(() => {
+  //   handleFlashcardFront();
+  //   handleFlashcardBack();
+  // }, [currentIndex]);
+
   useEffect(() => {
     localStorage.setItem('figures', JSON.stringify(figures));
   }, [figures]);
@@ -37,33 +75,22 @@ export function Flashcards() {
         <a href="make_flashcards"><button className="simple_button">Edit Flashcards</button></a>
 
         <div className = "flashcard_button_box">
-          <button className = "arrow_button" id = "swipe_left">&lt;</button>
+          {/* <button className = "arrow_button" id = "swipe_left">&lt;</button> */}
 
-          <button className = "simple_button" id = "flashcard_button" >
+          <button className = "simple_button" id = "flashcard_button" onClick= {handleFlashcardClick}>
               {/* <!-- Will add an audio element with sourced audio from an AI reader --> */}
-              {currentFigure && currentFigure.TSVData && currentFigure.TSVData.map((row, index) => (
-              <div key = {index} onClick = {handleFlashcardClick} className = "flashcard_display">
-                {isBase64ImageOrVideo(row[flashSide ? 1 : 0]) ? (
-                  <div  className="flashcard_side">
-                    {/^data:image\//.test(row[flashSide ? 1 : 0]) ? (
-                      <img className="flash_IMG" src={row[flashSide ? 1 : 0]} alt={`Flashcard ${index} front`} />
-                    ) : (
-                      <video controls>
-                        <source className="flash_IMG" src={row[flashSide ? 1 : 0]} type="video/mp4" />
-                        Your browser does not support the video tag.
-                      </video>
-                    )}
-                  </div>
-                ) : (
-                  <span>{row[flashSide ? 1 : 0]}</span>
-                )}
-              </div>
-            ))}
+              {(currentFigure && currentFigure.TSVData.length > 0) && 
+                <div className = "flash_display" key = {currentIndex}>
+                  {isBase64ImageOrVideo(currentFigure.TSVData[currentIndex][+(flashSide)])? 
+                  <img className = "flash_IMG" src = {currentFigure.TSVData[currentIndex][+(flashSide)]} /> 
+                  : <p>{currentFigure.TSVData[currentIndex][+(flashSide)]}</p>}
+                </div>
+              }
           </button>
 
-          <button className = "arrow_button" id = "swipe_right">&gt;</button>
+          <button className = "arrow_button" id = "swipe_right" onClick = {handleNextFlashcard}>&gt;</button>
         </div>
-        <button className = "simple_button" id = "previous_button">&lt;Previous</button>
+        <button className = "simple_button" id = "previous_button" onClick = {handlePrevious}>&lt;Previous</button>
       </main>
     </div>
   );

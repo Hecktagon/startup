@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
-import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, NavLink, Route, Routes, useLocation } from 'react-router-dom';
 import { Flashcards } from './flashcards/flashcards';
 import { Login } from './login/login';
 import { Make_Flashcards } from './make_flashcards/make_flashcards';
@@ -20,6 +20,9 @@ import { Vocab } from './vocab/vocab';
     <Route path='/vocab' element={<Vocab />} />
     <Route path='*' element={<NotFound />} />
 </Routes>
+
+// const location = useLocation()
+// const currPath = location.pathname
 
 function ProfilePicture() {
     const [image, setImage] = useState(null);
@@ -61,6 +64,7 @@ export default function App() {
                 <h1 id = "title">Lingua Franca</h1>
 
                     {/* this will eventually only be displayed if we are past the login page */}
+                {/* {!(currPath === "/" || currPath === "/login") &&  */}
                 <div className = "username_box">
                     <h3 id="username">User_Name789</h3> 
                     <ProfilePicture />

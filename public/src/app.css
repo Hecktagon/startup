@@ -73,6 +73,7 @@ a {
 }
 
 #swipe_right{
+    height: 90%;
     background-color: #b4ffb4;
 }
 
@@ -355,7 +356,10 @@ header {
     height: 100%;
     color:black;
     box-sizing: border-box;
+    row-gap: 40px;
 }
+
+
 
 .made_flashcard{
     font-family: monospace;
@@ -624,6 +628,7 @@ header {
         margin-bottom: 2vh;
         
     }
+
     
 
     .github_linkbox {
