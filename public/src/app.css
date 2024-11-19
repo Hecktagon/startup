@@ -553,7 +553,7 @@ header {
     border-width: 1px ;
     color: black;
     align-self: flex-end;
-    transform: translateX(100%);
+    transform: translateX(225%);
     animation-name: slide_in_out;
     animation-duration: 10s;
     margin-bottom: 0.5rem;
@@ -564,9 +564,9 @@ header {
 
 #notification_text{
     font-family: 'Trebuchet MS';
-    white-space: nowrap; 
+    /* white-space: nowrap; 
     overflow: hidden;
-    text-overflow: ellipsis; 
+    text-overflow: ellipsis;  */
 } 
 
 .index_input {
@@ -586,16 +586,16 @@ header {
 
 @keyframes slide_in_out{
     0% {
-        transform: translateX(115%);
+        transform: translateX(225%);
     }
     15% {
-        transform: translateX(-5%);
+        transform: translateX(70%);
     }
     85% {
-        transform: translateX(-5%);
+        transform: translateX(70%);
     }
     100% {
-        transform: translateX(115%);
+        transform: translateX(225%);
 
     }
 }

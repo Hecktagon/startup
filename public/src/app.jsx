@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
@@ -7,7 +7,7 @@ import { BrowserRouter, NavLink, Route, Routes, useLocation } from 'react-router
 import { Flashcards } from './flashcards/flashcards';
 import { Login } from './login/login';
 import { Make_Flashcards } from './make_flashcards/make_flashcards';
-import { Menu } from './menu/menu';
+// import { Menu } from './menu/menu';
 import { Settings } from './settings/settings';
 import { Vocab } from './vocab/vocab';
 
@@ -15,14 +15,19 @@ import { Vocab } from './vocab/vocab';
     <Route path='/flashcards' element={<Flashcards />} />
     <Route path='/login' element={<Login />} />
     <Route path='/make_flashcards' element={<Make_Flashcards />} />
-    <Route path='/menu' element={<Menu />} />
+    {/* <Route path='/menu' element={<Menu />} /> */}
     <Route path='/settings' element={<Settings />} />
     <Route path='/vocab' element={<Vocab />} />
     <Route path='*' element={<NotFound />} />
 </Routes>
 
-// const location = useLocation()
-// const currPath = location.pathname
+
+
+
+// useEffect(() => {
+//   usernameBox();
+// }, [location])
+
 
 function ProfilePicture() {
     const [image, setImage] = useState(null);
@@ -57,19 +62,46 @@ function ProfilePicture() {
     }
 
 export default function App() {
+  const username = localStorage.getItem('username');
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+  // const [previousPath, setPreviousPath] = useState("/vocab");
+
+  useEffect(() => {
+    const handlePathChange = () => {
+      // setPreviousPath(currentPath);
+      setCurrentPath(window.location.pathname);
+      handlePathChange();
+    };
+
+    const originalPushState = window.history.pushState;
+    window.history.pushState = function (...args) {
+      originalPushState.apply(window.history, args);
+      handlePushState();
+    };
+
+    const originalReplaceState = window.history.replaceState;
+    window.history.replaceState = function (...args) {
+      originalReplaceState.apply(window.history, args);
+      handlePushState();
+    };
+
+    return () => {
+      window.history.pushState = originalPushState;
+      window.history.replaceState = originalReplaceState;
+    };
+  }, []);
+
+
   return (
     <BrowserRouter>
         <div className='app'>
             <header>
                 <h1 id = "title">Lingua Franca</h1>
-
-                    {/* this will eventually only be displayed if we are past the login page */}
-                {/* {!(currPath === "/" || currPath === "/login") &&  */}
+                {currentPath !== "/login" && currentPath !== "/" &&
                 <div className = "username_box">
-                    <h3 id="username">User_Name789</h3> 
-                    <ProfilePicture />
-                    {/* <img  id="user_profile_pic" src="Globe_icon.jpg" alt="User Profile Image"></img> */}
-                </div>
+                  <h3 id="username">{username}</h3> 
+                  <ProfilePicture />  
+                </div>}
             </header> 
 
             <Routes>
@@ -77,7 +109,7 @@ export default function App() {
                 <Route path='/flashcards' element={<Flashcards />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/make_flashcards' element={<Make_Flashcards />} />
-                <Route path='/menu' element={<Menu />} />
+                {/* <Route path='/menu' element={<Menu />} /> */}
                 <Route path='/settings' element={<Settings />} />
                 <Route path='/vocab' element={<Vocab />} />
                 <Route path='*' element={<NotFound />} />
@@ -85,12 +117,14 @@ export default function App() {
 
             <footer>
                 <nav className = "nav_box">
+                  {currentPath !== "/login" && currentPath !== "/" &&
                     <menu className = "link_menu">
                         {/* this href will be replaced by a variable tracking what the previous page was at some point. */}
-                    <NavLink to="menu">&lt;- Back</NavLink> 
+                    
+                    {/* <NavLink to={previousPath}>&lt;- Back</NavLink>  */}
                     <NavLink to="login">Login</NavLink>
-                    <NavLink to="menu">Menu</NavLink>
-                    </menu>
+                    <NavLink to="vocab">Menu</NavLink>
+                    </menu>}
                 </nav> 
                 <div className = "github_linkbox">
                     <span className="text-reset">Tayler Hilton</span>
@@ -106,5 +140,5 @@ export default function App() {
 
 
 function NotFound() {
-    return <main className='container-fluid bg-secondary text-center'>404: Return to sender. Address unknown.</main>;
+    return <main className='container-fluid bg-secondary text-center main_box'>404: Return to sender. Address unknown.</main>;
 }
