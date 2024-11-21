@@ -8,15 +8,13 @@ import { Flashcards } from './flashcards/flashcards';
 import { Login } from './login/login';
 import { Make_Flashcards } from './make_flashcards/make_flashcards';
 // import { Menu } from './menu/menu';
-import { Settings } from './settings/settings';
+
 import { Vocab } from './vocab/vocab';
 
 <Routes>
     <Route path='/flashcards' element={<Flashcards />} />
     <Route path='/login' element={<Login />} />
     <Route path='/make_flashcards' element={<Make_Flashcards />} />
-    {/* <Route path='/menu' element={<Menu />} /> */}
-    <Route path='/settings' element={<Settings />} />
     <Route path='/vocab' element={<Vocab />} />
     <Route path='*' element={<NotFound />} />
 </Routes>
@@ -109,8 +107,6 @@ export default function App() {
                 <Route path='/flashcards' element={<Flashcards />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/make_flashcards' element={<Make_Flashcards />} />
-                {/* <Route path='/menu' element={<Menu />} /> */}
-                <Route path='/settings' element={<Settings />} />
                 <Route path='/vocab' element={<Vocab />} />
                 <Route path='*' element={<NotFound />} />
             </Routes>

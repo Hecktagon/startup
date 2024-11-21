@@ -3,12 +3,25 @@ import React, { useState, useEffect } from 'react';
 
 
 export function Make_Flashcards() {
-    const [figures, setFigures] = useState(() => {
-      const savedFigures = localStorage.getItem('figures');
-      return savedFigures ? JSON.parse(savedFigures) : [
-        {id: "1", src: 'spain_flag.png', caption: 'Spanish Flashcards', TSVData: []}
-      ];
-    });
+    const [figures, setFigures] = useState([]) 
+    useEffect(() => {
+      // Fetch figures from the backend
+      const fetchFigures = async () => {
+        try {
+          const response = await fetch('/api/figures');
+          if (response.ok) {
+            const data = await response.json();
+            setFigures(data);
+          } else {
+            console.error('Failed to fetch figures');
+          }
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      };
+  
+      fetchFigures();
+    }, [figures]);
 
     const folderId = localStorage.getItem('currentFolderId');
     const currentFigure = figures.find(figure => figure.id === folderId);
@@ -62,10 +75,6 @@ export function Make_Flashcards() {
       return /^data:image\/[a-zA-Z]+;base64,/.test(str) || /^data:video\/[a-zA-Z]+;base64,/.test(str);
     };
 
-    useEffect(() => {
-      localStorage.setItem('figures', JSON.stringify(figures));
-      setSliderValue(total_flashcards + 1)
-    }, [figures]);
 
     const handleSliderChange = (event) => {
         setSliderValue(event.target.value);

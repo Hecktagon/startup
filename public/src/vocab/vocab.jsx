@@ -1,19 +1,30 @@
 import React, { useState, useEffect } from 'react';
 
 export function Vocab() {
-  const [figures, setFigures] = useState(() => {
-    const savedFigures = localStorage.getItem('figures');
-    return savedFigures ? JSON.parse(savedFigures) : [
-      {id: "1", src: 'spain_flag.png', caption: 'Spanish Flashcards', TSVData: []}
-    ];
-  });
+  const [figures, setFigures] = useState([]);
   const [newImage, setNewImage] = useState(null);
   const [newTitle, setNewTitle] = useState('');
   const [showInputs, setShowInputs] = useState(false);
 
   useEffect(() => {
-    localStorage.setItem('figures', JSON.stringify(figures));
+    // Fetch figures from the backend
+    const fetchFigures = async () => {
+      try {
+        const response = await fetch('/api/figures');
+        if (response.ok) {
+          const data = await response.json();
+          setFigures(data);
+        } else {
+          console.error('Failed to fetch figures');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+
+    fetchFigures();
   }, [figures]);
+ 
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -30,27 +41,33 @@ export function Vocab() {
     setNewTitle(e.target.value);
   };
 
-  const handleButtonClick = (id) => {
+  const handleFolderClick = (id) => {
     localStorage.setItem('currentFolderId', id);
     window.location.href = 'flashcards';
   };
-
-  const addFigure = () => {
+  
+  async function addFigure() {
     if (newImage && newTitle) {
-        const newFigure = {id: String(figures.length + 1), src: newImage, caption: newTitle, TSVData: []};
-        const updatedFigures = [...figures, newFigure];
-        
-        // Update the state
-        setFigures(updatedFigures)
-        
-        // Reset inputs
-        setNewImage(null);
-        setNewTitle('');
-        setShowInputs(false);
+      const newFigure = {id: String(figures.length + 1), src: newImage, caption: newTitle, TSVData: []};
+  
+      try {
+          await fetch('/api/figure', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(newFigure),
+        });
+
+      } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred while saving the new figure.');
+      }
     } else {
-        alert('Please select an image and enter a title.');
+      alert('Please select an image and enter a title.');
     }
-};
+  };
+
   const handleAddFolderClick = () => {
     setShowInputs(true);
   };
@@ -67,7 +84,7 @@ export function Vocab() {
         {figures.map((figure, index) => (
           <figure key={index} className="button-figure">
             <a href="flashcards">
-              <button className="vocab_button" onClick={() => handleButtonClick(figure.id)}>
+              <button className="vocab_button" onClick={() => handleFolderClick(figure.id)}>
                 <img className="vocab_img" src={figure.src} alt="Button Image" />
               </button>
             </a>

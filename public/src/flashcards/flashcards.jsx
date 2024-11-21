@@ -3,12 +3,25 @@ import React, { useState, useEffect } from 'react';
 export function Flashcards() {
   const [flashcards, setFlashcards] = useState();
   const folderId = localStorage.getItem('currentFolderId');
-  const [figures, setFigures] = useState(() => {
-    const savedFigures = localStorage.getItem('figures');
-    return savedFigures ? JSON.parse(savedFigures) : [
-      {id: "1", src: 'spain_flag.png', caption: 'Spanish Flashcards', TSVData: []}
-    ];
-  });
+  const [figures, setFigures] = useState([]) 
+  useEffect(() => {
+    // Fetch figures from the backend
+    const fetchFigures = async () => {
+      try {
+        const response = await fetch('/api/figures');
+        if (response.ok) {
+          const data = await response.json();
+          setFigures(data);
+        } else {
+          console.error('Failed to fetch figures');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+
+    fetchFigures();
+  }, [figures]);
   const currentFigure = figures.find(figure => figure.id === folderId);
   const [defaultSide, setDefaultSide] = useState(false);
   const [flashSide, setFlashSide] = useState(defaultSide);
@@ -63,10 +76,6 @@ export function Flashcards() {
   //   handleFlashcardFront();
   //   handleFlashcardBack();
   // }, [currentIndex]);
-
-  useEffect(() => {
-    localStorage.setItem('figures', JSON.stringify(figures));
-  }, [figures]);
 
   return (
     <div className = "body">
