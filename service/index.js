@@ -8,13 +8,11 @@ let figures = [];
 let users = {};
 let userProfilePic = '';
 
+app.use(express.static('public'));
+
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
-
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
-});
 
 apiRouter.post('/auth/create', async (req, res) => {
     const user = users[req.body.username];
@@ -65,7 +63,18 @@ apiRouter.get('/figures', (_req, res) => {
     figures = req.body
     res.send(figures);
   });
+
+  app.use((_req, res) => {
+    res.sendFile('index.html', { root: 'public' });
+  });
   
+
+  app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
+});
+
+
+
   // updateFigures adds new figures to figures.
   function updateFigures(newFigure, figures) {
     figures.push(newFigure);
