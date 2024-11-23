@@ -102,7 +102,7 @@ export function Vocab() {
               onChange={handleTitleChange}
             />
             <button className="simple_button" onClick={addFigure}>
-              Add Flashcard
+              Add Folder
             </button>
           </div>
         )}

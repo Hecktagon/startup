@@ -45,6 +45,15 @@ a {
     color: white;
 }
 
+.quote{
+    color: black;
+    font-family: 'Courier New', Courier, monospace;
+    align-self: center;
+    justify-self: center;
+    margin: 2vw;
+    width: auto;
+}
+
 .flash_img {
     color: black;
     margin-left: 2vw;
