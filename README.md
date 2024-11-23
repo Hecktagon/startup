@@ -1,3 +1,6 @@
+# WEBSITE URL : https://startup.linguafranca.click/
+
+
 # Startup Specifications 
 
 ## Elevator Pitch:
@@ -100,5 +103,37 @@ There is a lot of text content, including labels on buttons and textboxes to hel
 
 ### Application images:  
 The most prominent images on the website are the user profile picture, and the coverrs for the vocab buttons. Both of these will eventually be customizeable by the user.  
+
+
+
+# **Step 3 - JSX/React:**  
+
+This about killed me, and I had to chop off a whole bunch of my website just so I could turn it in and move on.    
+
+### Changes:  
+Things dropped:  
+-settings  
+-the notificaiton animation  
+-the menu page  
+
+Things added:  
+-flashcard functionality  
+-folder & flashcard editability, including the ability to create and delete both folders and flashcards.  
+-image/video upload for both folders and flashcards  
+
+### Vite:  
+I bundled my files using vite and organized them.    
+
+### React:  
+There is a lot of reactivity in my website, including being able to select a username, being able to make new flashcard folders, being able to add flashcards to those folders using the "edit flashcards" button, being able to upload images/videos for both the flashcards and the covers of the folders, next and previous buttons for the flashcards to progress forwards and backwards through your flashcards, clicking on the flashcard displays the other side. Sourcing for the next porject will include a translation service autofill for the flashcard editor, and an AI voice to read flashcards.  
+
+### React Router:   
+I have routing to all my different pages, either thorugh buttons in the main or through the links in the footer. I also stored a "current page" variable to be able to control what shows up in the header and footer on certain pages.  
+
+### React Hooks:  
+I use tons of hooks, both useState and useEffect to ensure that flashcard data is being correctly updated in real time as you remove or add flashcards to local storage. They are also used to store the folders as JSON strings, and to keep track fo which data belongs to which folder. useState and useEffect are also laced throughout just about every other component of my website as well.  
+
+
+
 
 
