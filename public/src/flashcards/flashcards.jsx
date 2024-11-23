@@ -4,24 +4,15 @@ export function Flashcards() {
   const [flashcards, setFlashcards] = useState();
   const folderId = localStorage.getItem('currentFolderId');
   const [figures, setFigures] = useState([]) 
-  useEffect(() => {
-    // Fetch figures from the backend
-    const fetchFigures = async () => {
-      try {
-        const response = await fetch('/api/figures');
-        if (response.ok) {
-          const data = await response.json();
-          setFigures(data);
-        } else {
-          console.error('Failed to fetch figures');
-        }
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    };
+  
+  React.useEffect(() => {
+    fetch('/api/figures')
+      .then((response) => response.json())
+      .then((figures) => {
+        setFigures(figures);
+      });
+  }, []);
 
-    fetchFigures();
-  }, [figures]);
   const currentFigure = figures.find(figure => figure.id === folderId);
   const [defaultSide, setDefaultSide] = useState(false);
   const [flashSide, setFlashSide] = useState(defaultSide);

@@ -28,38 +28,38 @@ import { Vocab } from './vocab/vocab';
 
 
 function ProfilePicture() {
-    const [image, setImage] = useState(null);
-    const handleImageUpload = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onloadend = () => {
-            setImage(reader.result);
-          };
-          reader.readAsDataURL(file);
-        }
-      };
-      return (
-        <div>
-          <label htmlFor="upload-button">
-            {image ? (
-              <img className="user_profile_pic" src={image} alt="Profile" />
-            ) : (
-              <div className="user_profile_pic">
-              </div>
-            )}
-          </label>
-          <input
-            id="upload-button"
-            type="file"
-            style={{ display: 'none' }}
-            onChange={handleImageUpload}
-          />
-        </div>
-      );
-    }
+  const [image, setImage] = useState(null);
+  const handleImageUpload = (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setImage(reader.result);
+        };
+        reader.readAsDataURL(file);
+      }
+    };
+    return (
+      <div>
+        <label htmlFor="upload-button">
+          {image ? (
+            <img className="user_profile_pic" src={image} alt="Profile" />
+          ) : (
+            <div className="user_profile_pic">
+            </div>
+          )}
+        </label>
+        <input
+          id="upload-button"
+          type="file"
+          style={{ display: 'none' }}
+          onChange={handleImageUpload}
+        />
+      </div>
+    );
+  }
 
-export default function App() {
+export default function App(props) {
   const username = localStorage.getItem('username');
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
   // const [previousPath, setPreviousPath] = useState("/vocab");

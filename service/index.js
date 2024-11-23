@@ -60,10 +60,17 @@ apiRouter.get('/figures', (_req, res) => {
     figures = updateFigures(req.body, figures);
     res.send(figures);
   });
+
+  apiRouter.post('/change_figures', (req, res) => {
+    figures = req.body
+    res.send(figures);
+  });
   
   // updateFigures adds new figures to figures.
   function updateFigures(newFigure, figures) {
     figures.push(newFigure);
     return figures
   }
+
+  
 

@@ -6,24 +6,13 @@ export function Vocab() {
   const [newTitle, setNewTitle] = useState('');
   const [showInputs, setShowInputs] = useState(false);
 
-  useEffect(() => {
-    // Fetch figures from the backend
-    const fetchFigures = async () => {
-      try {
-        const response = await fetch('/api/figures');
-        if (response.ok) {
-          const data = await response.json();
-          setFigures(data);
-        } else {
-          console.error('Failed to fetch figures');
-        }
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    };
-
-    fetchFigures();
-  }, [figures]);
+  React.useEffect(() => {
+    fetch('/api/figures')
+      .then((response) => response.json())
+      .then((figures) => {
+        setFigures(figures);
+      });
+  }, []);
  
 
   const handleImageChange = (e) => {
@@ -45,11 +34,18 @@ export function Vocab() {
     localStorage.setItem('currentFolderId', id);
     window.location.href = 'flashcards';
   };
-  
+
+  const handleCloseInputs = () => {
+    setShowInputs(false);
+    setNewImage(null);
+    setNewTitle('');
+  };
+
   async function addFigure() {
-    if (newImage && newTitle) {
+    if (newTitle) {
       const newFigure = {id: String(figures.length + 1), src: newImage, caption: newTitle, TSVData: []};
-  
+      setFigures([...figures, newFigure]);
+      handleCloseInputs();
       try {
           await fetch('/api/figure', {
           method: 'POST',
@@ -72,11 +68,7 @@ export function Vocab() {
     setShowInputs(true);
   };
 
-  const handleCloseInputs = () => {
-    setShowInputs(false);
-    setNewImage(null);
-    setNewTitle('');
-  };
+
 
   return (
     <div className="body">
@@ -85,7 +77,7 @@ export function Vocab() {
           <figure key={index} className="button-figure">
             <a href="flashcards">
               <button className="vocab_button" onClick={() => handleFolderClick(figure.id)}>
-                <img className="vocab_img" src={figure.src} alt="Button Image" />
+                <img className="vocab_img" src={figure.src} />
               </button>
             </a>
             <figcaption className="vocab_button_caption">{figure.caption}</figcaption>
