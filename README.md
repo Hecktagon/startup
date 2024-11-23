@@ -134,6 +134,35 @@ I have routing to all my different pages, either thorugh buttons in the main or 
 I use tons of hooks, both useState and useEffect to ensure that flashcard data is being correctly updated in real time as you remove or add flashcards to local storage. They are also used to store the folders as JSON strings, and to keep track fo which data belongs to which folder. useState and useEffect are also laced throughout just about every other component of my website as well.  
 
 
+# **Step 4: Service:**  
+
+### Changes:  
+Had to cut back on more stuff, I think I might not be cut out for web development.   
+  Dropped:   
+    AI text to speech  
+
+  Added:  
+    Quote 3rd party service on login page  
+    
+
+### Nodejs and Express:  
+  Website runs using Node.js and express now.  
+
+### Frontend using Express middleware:  
+  The data for my website now runs through express middleware and my index.js file instead of local storage.  
+
+### frontend calls third party service endpoints:  
+  My frontend pulls a random quote for the login page from a 3rd party endpoint.   
+
+### backend provides service endpoints:  
+  I have a handful of endpoints in index.js prikariy for handling my figures data, which stores the bulk of the information I use in my website.  
+
+### frontend calls your service endpoints:  
+  There are various places in my code that post or get to/from my backend endpoints, including sending user data from login, and bosth sending and recieveing data for the flashcard folders on all my other pages.  
+
+
+
+
 
 
 
