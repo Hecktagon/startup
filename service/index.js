@@ -7,7 +7,7 @@ const DB = require('./database.js');
 const authCookieName = 'token';
 
 // The service port may be set on the command line
-const port = process.argv.length > 2 ? process.argv[2] : 3000;
+const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
 // JSON body parsing using built-in middleware
 app.use(express.json());
@@ -75,18 +75,23 @@ secureApiRouter.use(async (req, res, next) => {
 });
 
   // fetchFigures
-apiRouter.get('/figures', (_req, res) => {
+  secureApiRouter.get('/figures', async (req, res) => {
+    const figures = await DB.getFigures();
     res.send(figures);
   });
   
   // addFigure
-  apiRouter.post('/figure', (req, res) => {
-    figures = updateFigures(req.body, figures);
+  secureApiRouter.post('/figure', async (req, res) => {
+    const figure = { ...req.body, ip: req.ip };
+    await DB.addFigure(figure);
+    const figures = await DB.getFigures();
     res.send(figures);
   });
 
-  apiRouter.post('/change_figures', (req, res) => {
-    figures = req.body
+  apiRouter.post('/change_figures', async (req, res) => {
+    figures = { ...req.body, ip: req.ip };
+    await DB.replaceFigures(figures);
+    const figures = await DB.getFigures();
     res.send(figures);
   });
 

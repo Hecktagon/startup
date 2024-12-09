@@ -5,10 +5,11 @@ import { Authenticated } from './authenticated';
 import { AuthState } from './authState';
 
 export function Login({ userName, authState, onAuthChange }) {
+  console.log('authState:', authState); // Add this line to check the value of authState
   return (
-    <main className='container-fluid bg-secondary text-center'>
+    <main className='main_box'>
       <div>
-        {authState !== AuthState.Unknown && <h1>Welcome to Simon</h1>}
+        {authState !== AuthState.Unknown && <h1 className = "big_text">Lingua Franca</h1>}
         {authState === AuthState.Authenticated && (
           <Authenticated userName={userName} onLogout={() => onAuthChange(userName, AuthState.Unauthenticated)} />
         )}

@@ -86,6 +86,10 @@ a {
     background-color: #b4ffb4;
 }
 
+.big_text {
+    color: black;
+}
+
 footer {
     background-color: #070091;
     width: 100%;
