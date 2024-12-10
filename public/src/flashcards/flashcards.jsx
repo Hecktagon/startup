@@ -4,16 +4,21 @@ export function Flashcards() {
   const [flashcards, setFlashcards] = useState();
   const folderId = localStorage.getItem('currentFolderId');
   const [figures, setFigures] = useState([]) 
-  
+  const [currentFigure, setCurrentFigure] = useState()
+
   React.useEffect(() => {
     fetch('/api/figures')
       .then((response) => response.json())
       .then((figures) => {
-        setFigures(figures);
-      });
+        setFigures(figures[0]);
+        console.log("FIGURES:\n",figures);
+      })
+      .then(() =>
+      {setCurrentFigure(figures.find(figure => figure.id === folderId));
+      console.log("CURRFIG:\n",currentFigure)});
   }, []);
 
-  const currentFigure = figures.find(figure => figure.id === folderId);
+  
   const [defaultSide, setDefaultSide] = useState(false);
   const [flashSide, setFlashSide] = useState(defaultSide);
   const [currentIndex, setCurrentIndex] = useState(0);

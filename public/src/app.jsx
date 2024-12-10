@@ -6,6 +6,7 @@ import './app.css';
 import { BrowserRouter, NavLink, Route, Routes, useLocation } from 'react-router-dom';
 import { Flashcards } from './flashcards/flashcards';
 import { Login } from './login/login';
+import { AuthState } from './login/authState';
 import { Make_Flashcards } from './make_flashcards/make_flashcards';
 // import { Menu } from './menu/menu';
 
@@ -60,7 +61,10 @@ function ProfilePicture() {
   }
 
 export default function App(props) {
-  const username = localStorage.getItem('username');
+  const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
+  const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
+  const [authState, setAuthState] = React.useState(currentAuthState);
+
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
   // const [previousPath, setPreviousPath] = useState("/vocab");
 
@@ -97,15 +101,29 @@ export default function App(props) {
                 <h1 id = "title">Lingua Franca</h1>
                 {currentPath !== "/login" && currentPath !== "/" &&
                 <div className = "username_box">
-                  <h3 id="username">{username}</h3> 
+                  <h3 id="username">{userName}</h3> 
                   <ProfilePicture />  
                 </div>}
             </header> 
 
             <Routes>
-                <Route exact path='/' element={<Login />} />
+                <Route exact path='/' element={<Login 
+                userName={userName}
+                authState={authState}
+                onAuthChange={(userName, authState) => {
+                  setAuthState(authState);
+                  setUserName(userName);
+                }}
+                />} />
                 <Route path='/flashcards' element={<Flashcards />} />
-                <Route path='/login' element={<Login />} />
+                <Route path='/login' element={<Login 
+                userName={userName}
+                authState={authState}
+                onAuthChange={(userName, authState) => {
+                  setAuthState(authState);
+                  setUserName(userName);
+                }}
+                />} />
                 <Route path='/make_flashcards' element={<Make_Flashcards />} />
                 <Route path='/vocab' element={<Vocab />} />
                 <Route path='*' element={<NotFound />} />

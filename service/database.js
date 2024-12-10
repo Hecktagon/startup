@@ -51,8 +51,9 @@ async function replaceFigures(figures) {
     return figureCollection.insertOne(figures);
   }
 
-function getFigures() {
-  const cursor = figureCollection.find();
+async function getFigures() {
+    const cursor = figureCollection.find();
+//   console.log("CURSORTOARRAY:\n",cursor.toArray())
   return cursor.toArray();
 }
 
@@ -64,3 +65,12 @@ module.exports = {
   getFigures,
   replaceFigures
 };
+
+async function main() {
+    await addFigure({src: "null", id: 1, name: "hello", TSV:[]})
+    const fig = await getFigures()
+    console.log("GET FIGURES:\n",fig)
+
+}
+
+main();

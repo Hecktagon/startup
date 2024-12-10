@@ -89,9 +89,9 @@ secureApiRouter.use(async (req, res, next) => {
   });
 
   apiRouter.post('/change_figures', async (req, res) => {
-    figures = { ...req.body, ip: req.ip };
+    let figures = { ...req.body, ip: req.ip };
     await DB.replaceFigures(figures);
-    const figures = await DB.getFigures();
+    figures = await DB.getFigures();
     res.send(figures);
   });
 
