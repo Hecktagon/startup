@@ -13,11 +13,24 @@ export function Make_Flashcards() {
         });
     }, []);
 
+    console.log("FIGURES:\n",figures)
+
     const folderId = localStorage.getItem('currentFolderId');
     const [currentFigure, setCurrentFigure] = useState(figures.find(figure => figure.id === folderId));
 
     useEffect(() => {
-    setCurrentFigure(figures.find(figure => figure.id === folderId));
+      setCurrentFigure(figures.find(figure => figure.id === folderId));
+      fetch('/api/change_figures', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(figures),
+        }).then(() => {
+            console.log("figures updated!");
+        }).catch(error => {
+            console.error("Error updating figures:", error);
+        });
     }, [figures])
 
     const [TSVBox, setTSVBox] = useState()
@@ -82,59 +95,62 @@ export function Make_Flashcards() {
         setSliderValue(event.target.value);
     };
 
-    const handleDeleteSet = async () => {
-      const userConfirmed = window.confirm("Are you sure you would like to delete this set?");
-      if (userConfirmed) {
-          const userDoubleConfirmed = window.confirm("Are you SURE you're sure?");
-          if (userDoubleConfirmed) {
-              // Use a callback to get the updated figures
-              const updatedFigures = prevFigures => {
-                  return prevFigures.map(figure => {
-                      if (figure.id === folderId) {
-                          // Return null to remove later with .filter
-                          return null;
-                      } else if (figure.id > folderId) {
-                          // Subtract 1 from ids greater than folderId
-                          return {
-                              ...figure,
-                              id: figure.id - 1
-                          };
-                      }
-                      // Return the figure unchanged if id is not greater than folderId
-                      return figure;
-                  }).filter(figure => figure !== null); // Remove null values
-              };
+  //   const handleDeleteSet = async () => {
+  //     const userConfirmed = window.confirm("Are you sure you would like to delete this set?");
+  //     if (userConfirmed) {
+  //         const userDoubleConfirmed = window.confirm("Are you SURE you're sure?");
+  //         if (userDoubleConfirmed) {
+  //             // Use a callback to get the updated figures
+  //             const updatedFigures = prevFigures => {
+  //                 return prevFigures.map(figure => {
+  //                     if (figure.id === folderId) {
+  //                         // Return null to remove later with .filter
+  //                         return null;
+  //                     } else if (figure.id > folderId) {
+  //                         // Subtract 1 from ids greater than folderId
+  //                         return {
+  //                             ...figure,
+  //                             id: figure.id - 1
+  //                         };
+  //                     }
+  //                     // Return the figure unchanged if id is not greater than folderId
+  //                     return figure;
+  //                 }).filter(figure => figure !== null); // Remove null values
+  //             };
   
-              // Update the state and get the new figures
-              setFigures(prevFigures => {
-                  const newFigures = updatedFigures(prevFigures);
-                  // Send the updated figures to the backend
-                  fetch('/api/change_figures', {
-                      method: 'POST',
-                      headers: {
-                          'Content-Type': 'application/json',
-                      },
-                      body: JSON.stringify(newFigures),
-                  }).then(() => {
-                      console.log("Set deleted");
-                      window.location.href = '/vocab';
-                  }).catch(error => {
-                      console.error("Error updating figures:", error);
-                  });
-                  return newFigures;
-              });
-          } else {
-              console.log("Deletion cancelled");
-          }
-      } else {
-          console.log("Deletion cancelled");
-      }
-  };
+  //             // Update the state and get the new figures
+  //             setFigures(prevFigures => {
+  //                 const newFigures = updatedFigures(prevFigures);
+  //                 // Send the updated figures to the backend
+  //                 fetch('/api/change_figures', {
+  //                     method: 'POST',
+  //                     headers: {
+  //                         'Content-Type': 'application/json',
+  //                     },
+  //                     body: JSON.stringify(newFigures),
+  //                 }).then(() => {
+  //                     console.log("Set deleted");
+  //                     window.location.href = '/vocab';
+  //                 }).catch(error => {
+  //                     console.error("Error updating figures:", error);
+  //                 });
+  //                 return newFigures;
+  //             });
+  //         } else {
+  //             console.log("Deletion cancelled");
+  //         }
+  //     } else {
+  //         console.log("Deletion cancelled");
+  //     }
+  // };
 
 
   const updateTSV = async () => {
     // Parse the TSV string into an array of objects
     if (!flashData) { return; }
+    if (typeof flashData != 'string') { return; }
+    console.log("\nFLASHDATA TYPE\n:", typeof flashData)
+    console.log("\nFLASHDATA:\n", flashData);
     const initTSVData = flashData.split('\n').map(row => row.split('\t').map(item => item.trim()));
     const newTSVData = initTSVData.map((subArray, index) => 
         subArray.length <= 2 ? [...subArray, total_flashcards + index, 0, null] : subArray
@@ -199,39 +215,39 @@ export function Make_Flashcards() {
   }, [flashData]);
 
 
-    const handleDeleteFlashcard = async (index) => {
-      // Update the figures state and get the new figures
-      const updatedFigures = prevFigures => {
-          return prevFigures.map(figure => {
-              if (figure.id === folderId) {
-                  const newTSVData = figure.TSVData.filter((_, i) => i !== index);
-                  return {
-                      ...figure,
-                      TSVData: newTSVData
-                  };
-              }
-              return figure;
-          });
-      };
+  //   const handleDeleteFlashcard = async (index) => {
+  //     // Update the figures state and get the new figures
+  //     const updatedFigures = prevFigures => {
+  //         return prevFigures.map(figure => {
+  //             if (figure.id === folderId) {
+  //                 const newTSVData = figure.TSVData.filter((_, i) => i !== index);
+  //                 return {
+  //                     ...figure,
+  //                     TSVData: newTSVData
+  //                 };
+  //             }
+  //             return figure;
+  //         });
+  //     };
   
-      // Update the state and get the new figures
-      setFigures(prevFigures => {
-          const newFigures = updatedFigures(prevFigures);
-          // Send the updated figures to the backend
-          fetch('/api/change_figures', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(newFigures),
-          }).then(() => {
-              console.log("Flashcard deleted");
-          }).catch(error => {
-              console.error("Error updating figures:", error);
-          });
-          return newFigures;
-      });
-  };
+  //     // Update the state and get the new figures
+  //     setFigures(prevFigures => {
+  //         const newFigures = updatedFigures(prevFigures);
+  //         // Send the updated figures to the backend
+  //         fetch('/api/change_figures', {
+  //             method: 'POST',
+  //             headers: {
+  //                 'Content-Type': 'application/json',
+  //             },
+  //             body: JSON.stringify(newFigures),
+  //         }).then(() => {
+  //             console.log("Flashcard deleted");
+  //         }).catch(error => {
+  //             console.error("Error updating figures:", error);
+  //         });
+  //         return newFigures;
+  //     });
+  // };
 
 
 // for preventing tab jumping
@@ -266,11 +282,13 @@ useEffect(() => {
         {/* Will eventually source a translation service to help users fill out the back sides of their flashcards */}
         <div className="flashcard_editor">
           <div className="make_flashcards">
+            {/*
             <div>
               <button className="delete_button" id="delete_set" onClick={handleDeleteSet}>
                 Delete Set
               </button>
             </div>
+            */}
 
             <form className="TSV_input_box" action="flashcards" method="get">
               <textarea className="textbox" id="TSVInput" name="TSVInput" onChange = {handleTSVBox} placeholder="Paste TSV data here..."></textarea>
@@ -355,7 +373,7 @@ useEffect(() => {
                   ) : (
                     <span>{row[1]}</span>
                   )}
-                  <button className = "delete_button" onClick={() => handleDeleteFlashcard(index)}>X</button>
+                  <button className = "delete_button">X</button>
                 </div>
               ))}
             

@@ -13,6 +13,22 @@ export function Vocab() {
         setFigures(figures);
       });
   }, []);
+
+  useEffect(() => {
+    fetch('/api/change_figures', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(figures),
+      }).then(() => {
+          console.log("figures updated!");
+      }).catch(error => {
+          console.error("Error updating figures:", error);
+      });
+  }, [figures])
+
+  console.log("FIGURES:\n",figures)
  
 
   const handleImageChange = (e) => {

@@ -95,6 +95,13 @@ secureApiRouter.use(async (req, res, next) => {
     res.send(figures);
   });
 
+  apiRouter.post('/edit_figure', async (req, res) => {
+    let figure = { ...req.body, ip: req.ip };
+    await DB.editFigure(figure);
+    figures = await DB.getFigures();
+    res.send(figures);
+  });
+
   // Default error handler
 app.use(function (err, req, res, next) {
   res.status(500).send({ type: err.name, message: err.message });

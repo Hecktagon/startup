@@ -41,18 +41,35 @@ async function createUser(email, password) {
 }
 
 async function addFigure(figure) {
-  return figureCollection.insertOne(figure);
+  console.log('INSERTING ONE')
+  await figureCollection.insertOne(figure);
+  return figure;
 }
 
 async function replaceFigures(figures) {
+  
     // Delete all existing documents in the collection
     await figureCollection.deleteMany({});
-    // Insert the new figure
-    return figureCollection.insertOne(figures);
+    // Insert the new figures
+    if (Array.isArray(figures) && figures != []) {
+    console.log('INSERTING MANY')
+    await figureCollection.insertMany(figures);}
+    return figures;
   }
 
+async function editFigure(figure){
+  const result = await figureCollection.updateOne(
+    { id: figure.id },
+    { $set: figure }
+  );
+  console.log(`Updated ${result.modifiedCount} documents`);
+  return result;
+}
+
 async function getFigures() {
+    
     const cursor = figureCollection.find();
+    console.log('GETTING FIGURES')
 //   console.log("CURSORTOARRAY:\n",cursor.toArray())
   return cursor.toArray();
 }
@@ -66,11 +83,11 @@ module.exports = {
   replaceFigures
 };
 
-async function main() {
-    await addFigure({src: "null", id: 1, name: "hello", TSV:[]})
-    const fig = await getFigures()
-    console.log("GET FIGURES:\n",fig)
+// async function main() {
+//     await addFigure({src: "null", id: 1, name: "hello", TSV:[]})
+//     const fig = await getFigures()
+//     console.log("GET FIGURES:\n",fig)
 
-}
+// }
 
-main();
+// main();
