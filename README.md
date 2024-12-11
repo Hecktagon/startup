@@ -161,6 +161,32 @@ Had to cut back on more stuff, I think I might not be cut out for web developmen
   There are various places in my code that post or get to/from my backend endpoints, including sending user data from login, and bosth sending and recieveing data for the flashcard folders on all my other pages.  
 
 
+# **Step 5: Login:**  
+
+### supports new user registration:  
+complete  
+It does, and stores each users info in the backend  
+
+### supports existing user authentification and logout:   
+complete  
+It does, it stores user data and authenticates preexisting users on login  
+
+### stores application data in MongoDB:  
+partially complete  
+sends all application data to the bakcend using database.js and mongo, but i am not able to access that infromation for any reason  
+
+### stores and retireves credentials in mongoDB:  
+complete  
+credentials are sent successfully to mongodb and encrypted and retireved successfully from mongodb  
+
+### restricts application functionality based upon authentication:  
+complete
+users cant login and are restricted from using the application if not authenticaed
+
+
+
+
+
 
 
 
