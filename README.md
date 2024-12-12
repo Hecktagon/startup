@@ -206,6 +206,10 @@ a message is created in loggedin.jsx to update users when a fellow user has logg
 complete  
 the message sent through websocket displays on the front end, but data is not always conveyed successfully throught the websocket. i.e. the displaying of the websocket data is working, but the sending of the data via the websocket is only semifucntional.   
 
+### all visible elements are working:  
+partially complete  
+the flashcard TSV data, which is the words submitted by the user to display on the flashcards, is not working, and therefore the flashcard functionality is not complete. everything else is functional.  
+
 
 
 
