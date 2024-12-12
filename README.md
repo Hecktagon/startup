@@ -172,8 +172,8 @@ complete
 It does, it stores user data and authenticates preexisting users on login  
 
 ### stores application data in MongoDB:  
-partially complete  
-sends all application data to the bakcend using database.js and mongo, but i am not able to access that infromation for any reason  
+complete (mostly)
+sends most application data to the bakcend using database.js and mongo, I am able to access the data that successfully ends up in the database.
 
 ### stores and retireves credentials in mongoDB:  
 complete  
@@ -185,6 +185,26 @@ users cant login and are restricted from using the application if not authentica
 
 
 
+
+# **Step 6: WebSocket:**    
+
+## Description:  
+My website attempts to implement simple websocket functionality to display a message whenever another user logs in to the site. 
+
+### backend listens for websocket connections:   
+complete   
+implemented peerProxy.js and loginNotifier.js, which each play a role in opening a websocket and listining for connctions.   
+### frontend makes websocket connections:  
+complete   
+authenticated.jsx and loggedin.jsx both interract with the open websocket. authenticated makes a broadcast using loginNotifier.js, successfully making a websocket conenction.   
+
+### data sent over websocket connection:  
+partially complete  
+a message is created in loggedin.jsx to update users when a fellow user has logged in, this message is sent through the websocket, but is a little flaky on actually going through.  
+
+### websocket data displayed in the application interface:  
+complete  
+the message sent through websocket displays on the front end, but data is not always conveyed successfully throught the websocket. i.e. the displaying of the websocket data is working, but the sending of the data via the websocket is only semifucntional.   
 
 
 
